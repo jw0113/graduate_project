@@ -7,5 +7,14 @@
         "deobfuscation" : "python 경로",
         "code_convert" : "none",
         "tips" : ""
+    },
+    {
+        "no" : 2,
+        "title" : "Powershell - Split",
+        "descriptions" : "The deobfuscated code is Powershellscript-split obfuscation",
+        "regexp" : "(\"[a-z.:]{1,}[\\w/]{1,}\"[+].*)",
+        "deobfuscation" : "python 경로",
+        "code_convert" : "none",
+        "tips" : ""
     }
 ]

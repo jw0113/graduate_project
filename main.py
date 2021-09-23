@@ -1,5 +1,6 @@
 import argparse
 import os
+import json
 
 # 리스트로 파일 읽기
 def load_file(path) -> list:
@@ -14,8 +15,19 @@ def load_file(path) -> list:
 
 # Rule 읽어오기
 def load_rules(rule_path) -> dict:
-    rules = {}
-    
+    try:
+        # json파일 읽기
+        with open(rule_path,"r",encoding="UTF8") as f:
+            # json.load()함수를 이용해 내용을 dict형식으로 읽어온다.
+            data = json.load(f)
+        return data
+    except:
+        return {}
+
+# 파일에서 악성코드 탐지하기
+def match_rule(inputfile, rulefile) -> dict:
+    for size in range(len(rulefile)):
+        pattern = rulefile[size]["regexp"]
 
 
 def main():
@@ -33,8 +45,14 @@ def main():
     # 입력받은 파일을 리스트형식으로 가져오기
     inputfile_list = load_file(args.inputfile)
 
+    # json형식으로 저장한 Rules 가져오기
+    rule = load_rules("./rules/rules.json")
 
-    print(inputfile_list)
+    # 읽어온 파일과 rule파일을 이용해 탐지하기
+    result = match_rule(inputfile_list, rule)
+
+    print("json 내용 불러오기 : ",rule)
+    print("파일 내용 불러오기 : ",inputfile_list)
 
 if __name__ == "__main__":
     main()
