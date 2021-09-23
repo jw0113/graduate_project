@@ -1,6 +1,7 @@
 import argparse
 import os
 import json
+import re
 
 # 리스트로 파일 읽기
 def load_file(path) -> list:
@@ -26,8 +27,23 @@ def load_rules(rule_path) -> dict:
 
 # 파일에서 악성코드 탐지하기
 def match_rule(inputfile, rulefile) -> dict:
-    for size in range(len(rulefile)):
-        pattern = rulefile[size]["regexp"]
+
+    # 파일 내용 중 \n이 있을 경우 한줄씩 검사
+    for index in range(len(inputfile)):
+
+        for size in range(len(rulefile)):
+            # json형식 중 정규표현식 부분만 추출
+            pattern = rulefile[size]["regexp"]
+
+            # 미리 컴파일해두고 저장하는 방법
+            regexp = re.compile(pattern)
+            print("정규표현식은? : ", regexp)
+
+            # 파일의 내용과 정규표현식 매칭
+            match_re = re.findall(regexp, inputfile[index])
+            print("결과가 어떻게 되었나 궁금 : ",match_re)
+
+    
 
 
 def main():
@@ -51,8 +67,8 @@ def main():
     # 읽어온 파일과 rule파일을 이용해 탐지하기
     result = match_rule(inputfile_list, rule)
 
-    print("json 내용 불러오기 : ",rule)
-    print("파일 내용 불러오기 : ",inputfile_list)
+    #print("json 내용 불러오기 : ",rule)
+    #print("파일 내용 불러오기 : ",inputfile_list)
 
 if __name__ == "__main__":
     main()
