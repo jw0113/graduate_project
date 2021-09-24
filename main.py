@@ -30,6 +30,7 @@ def match_rule(inputfile, rulefile) -> dict:
 
     # 파일 내용 중 \n이 있을 경우 한줄씩 검사
     for index in range(len(inputfile)):
+        temp = inputfile[index]
 
         for size in range(len(rulefile)):
             # json형식 중 정규표현식 부분만 추출
@@ -37,11 +38,22 @@ def match_rule(inputfile, rulefile) -> dict:
 
             # 미리 컴파일해두고 저장하는 방법
             regexp = re.compile(pattern)
-            print("정규표현식은? : ", regexp)
 
             # 파일의 내용과 정규표현식 매칭
             match_re = re.findall(regexp, inputfile[index])
-            print("결과가 어떻게 되었나 궁금 : ",match_re)
+            
+            # 정규표현식에 해당되는 내용 추출
+            for match in match_re:
+                while True:
+
+                    # 매칭된 값을 파일 내용에서 찾음
+                    match_index = temp.find(match)
+                    
+                    if match_index == -1 :
+                        break
+                    temp = temp[match_index+len(match):]
+
+
 
     
 
