@@ -41,6 +41,8 @@ def match_rule(inputfile, rulefile) -> dict:
 
             # 파일의 내용과 정규표현식 매칭
             match_re = re.findall(regexp, inputfile[index])
+
+            print(match_re)
             
             # 정규표현식에 해당되는 내용 추출
             for match in match_re:
@@ -53,9 +55,6 @@ def match_rule(inputfile, rulefile) -> dict:
                         break
                     temp = temp[match_index+len(match):]
 
-
-
-    
 
 
 def main():
