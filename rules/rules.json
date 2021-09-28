@@ -3,7 +3,10 @@
         "no" : 1,
         "title" : "BASE64",
         "descriptions" : "Decoding Base64 String. If the released code is incomplete, please try again this Executable",
-        "regexp" : "([A-Za-z0-9=]{20,})"
+        "regexp" : "([A-Za-z0-9=]{20,})",
+        "deobfuscation" : "python 경로",
+        "code_convert" : "none",
+        "tips" : ""
     },
     {
         "no" : 2,
