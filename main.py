@@ -42,18 +42,17 @@ def match_rule(inputfile, rulefile) -> dict:
             # 파일의 내용과 정규표현식 매칭
             match_re = re.findall(regexp, inputfile[index])
 
-            print(match_re)
+            print("이게뭔지 확인",match_re)
+
+            number = 0
             
             # 정규표현식에 해당되는 내용 추출
             for match in match_re:
                 while True:
 
                     # 매칭된 값을 파일 내용에서 찾음
-                    match_index = temp.find(match)
+                    matching = temp.find(match)
                     
-                    if match_index == -1 :
-                        break
-                    temp = temp[match_index+len(match):]
 
 
 
