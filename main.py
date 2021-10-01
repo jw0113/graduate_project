@@ -74,9 +74,6 @@ def match_rule(inputfile, rulefile) -> dict:
 
 
 
-
-
-
 def main():
     # 스프링을 만들기 전 Test용으로 터미널 창에서 파일을 업로드하여 탐지&해제하는 방식으로 진행
     # argparse : 명령창에서 인자 전달하면 받아서 진행하깅 위한 라이브러리
