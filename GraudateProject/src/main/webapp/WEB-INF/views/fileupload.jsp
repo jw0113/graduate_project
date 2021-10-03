@@ -52,7 +52,7 @@
 
 			$.ajax({
 				type : "POST",
-				url : "/upload/",
+				url : "/graduateproject/upload/",
 				data : formData,
 				dataType : "text",
 				processData : false,
