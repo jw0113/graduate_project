@@ -46,7 +46,7 @@ public class HomeController {
 	@RequestMapping(value="/upload", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
 	public String uploadcheck(MultipartHttpServletRequest file) {
 		System.out.println("/upload POST 요청 발생!");
-		System.out.println("param : " + file);
+		System.out.println("param : " + file.getFileNames());
 		return "OK";
 	}
 	
