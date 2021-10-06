@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 @Controller
 public class HomeController {
@@ -44,7 +44,7 @@ public class HomeController {
 	// 파일 업로드 후 해당 파일을 가져옴
 	// 한글 파일 처리를 위한 produces 속성 추가
 	@RequestMapping(value="/upload", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
-	public String uploadcheck(MultipartFile file) {
+	public String uploadcheck(MultipartHttpServletRequest file) {
 		System.out.println("/upload POST 요청 발생!");
 		System.out.println("param : " + file);
 		return "OK";
