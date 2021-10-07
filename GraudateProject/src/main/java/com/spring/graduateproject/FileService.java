@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Iterator;
+import java.util.UUID;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -18,6 +19,9 @@ public class FileService implements IFileService {
 	@Override
 	public void sendToserver(MultipartFile f) {
 		try {
+			// boundary값으로 사용하기 위한 무작위 값
+			UUID uuid = UUID.randomUUID();
+			
 			URL url = new URL(null,"http://127.0.0.1:5000/flasktest", new sun.net.www.protocol.https.Handler());
 			// HttpURLConnection 객체를 생성하여 URL 연결
 			HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
