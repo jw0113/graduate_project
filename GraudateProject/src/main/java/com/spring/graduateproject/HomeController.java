@@ -52,13 +52,18 @@ public class HomeController {
 	@RequestMapping(value="/upload", method = RequestMethod.POST)
 	public String uploadcheck(MultipartHttpServletRequest file) {
 		
+		
 		// Multipart로 읽어온 파일들 저장
 		Iterator<String> filelist = file.getFileNames();
 		
 		//받은 파일을 모두 불러온다.
 		while(filelist.hasNext()) {
 			MultipartFile f = file.getFile(filelist.next());
-			ifileservice.sendToserver(f);
+			int size = (int)f.getSize();
+			
+			// 파일의 크기 보냄
+			ifileservice.SizeCon(f,size);
+
 		}
 		
 		

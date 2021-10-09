@@ -2,6 +2,7 @@ import argparse
 import os
 import json
 import re
+import socket
 
 # 리스트로 파일 읽기
 def load_file(path) -> list:
@@ -72,22 +73,49 @@ def match_rule(inputfile, rulefile) -> dict:
         print("result값 확인하자 : ",result)
     return result
 
+def inputfile(client_sock, size):
+
+
+    file = client_sock.recv(int(size.decode('utf-8')))
+
+    return file.decode('utf-8')
+
 
 
 def main():
+    
+    # ------------------------- 스프링 전 TEST CODE -------------------------------------
     # 스프링을 만들기 전 Test용으로 터미널 창에서 파일을 업로드하여 탐지&해제하는 방식으로 진행
     # argparse : 명령창에서 인자 전달하면 받아서 진행하깅 위한 라이브러리
     # ArgumentParser 객체 생성 / description : 도움말 메시지
-    parser = argparse.ArgumentParser(description="Test Python")
+    #parser = argparse.ArgumentParser(description="Test Python")
 
     # ArgumentParser에 인자 추가하기
-    parser.add_argument("inputfile",type=str,help="input file")
+    #parser.add_argument("inputfile",type=str,help="input file")
 
     # 입력받은 인자값을 args에 저장하기
-    args = parser.parse_args()
+    #args = parser.parse_args()
 
     # 입력받은 파일을 리스트형식으로 가져오기
-    inputfile_list = load_file(args.inputfile)
+    #inputfile_list = load_file(args.inputfile)
+    # -------------------------------------------------------------------------------------
+
+    # socket통신을 이용해 연결 후 데이터크기 받아옴 (소켓 크기 설정 위해)
+    host = "127.0.0.1"
+    port = 5000
+    server = socket.socket(socket.AF_INET)
+    server.bind((host,port))
+    server.listen(10)
+
+    print("waiting...")
+    client_sock, addr = server.accept()
+    print("Connected by", addr)
+
+    filesize = client_sock.recv(1024)
+
+    # 데이터 크기만큼의 데이터 내용도 받아옴
+    inputfile_list = inputfile(client_sock, filesize)
+    print(inputfile_list)
 
     # json형식으로 저장한 Rules 가져오기
     rule = load_rules("./rules/rules.json")
