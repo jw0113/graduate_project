@@ -75,7 +75,7 @@ def match_rule(inputfile, rulefile) -> dict:
 
 def inputfile(client_sock, size):
 
-
+    print("size확인 : ", size)
     file = client_sock.recv(int(size.decode('utf-8')))
 
     return file.decode('utf-8')
@@ -112,10 +112,13 @@ def main():
     print("Connected by", addr)
 
     filesize = client_sock.recv(1024)
+    print("받아온 파일 : ", filesize)
+    num = 1
+    client_sock.send(num.to_bytes(4,byteorder='little'))
 
     # 데이터 크기만큼의 데이터 내용도 받아옴
     inputfile_list = inputfile(client_sock, filesize)
-    print(inputfile_list)
+    print(type(inputfile_list))
 
     # json형식으로 저장한 Rules 가져오기
     rule = load_rules("./rules/rules.json")
