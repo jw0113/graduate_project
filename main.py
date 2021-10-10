@@ -32,6 +32,7 @@ def match_rule(inputfile, rulefile) -> dict:
     result = {}
 
     # 파일 내용 중 \n이 있을 경우 한줄씩 검사
+    print('inputfile 크기 : ',len(inputfile))
     for index in range(len(inputfile)):
         temp = inputfile[index]
         match_result = []
@@ -47,6 +48,7 @@ def match_rule(inputfile, rulefile) -> dict:
             match_re = re.findall(regexp, inputfile[index])
 
             print("이게뭔지 확인",match_re)
+            print("크기 확인 : ", len(match_re))
 
             number = 0
             
@@ -70,10 +72,10 @@ def match_rule(inputfile, rulefile) -> dict:
                     number += matching+len(match)
         
         result[str(index+1)] = match_result
-        print("result값 확인하자 : ",result)
+        #print("result값 확인하자 : ",result)
     return result
 
-def inputfile(client_sock, size):
+def inputfiles(client_sock, size):
 
     print("size확인 : ", size)
     file = client_sock.recv(int(size.decode('utf-8')))
@@ -117,16 +119,22 @@ def main():
     client_sock.send(num.to_bytes(4,byteorder='little'))
 
     # 데이터 크기만큼의 데이터 내용도 받아옴
-    inputfile_list = inputfile(client_sock, filesize)
+    inputfile_list = inputfiles(client_sock, filesize)
     print(type(inputfile_list))
+    input_list = inputfile_list.split('\n')
+    print(input_list,type(input_list))
 
     # json형식으로 저장한 Rules 가져오기
     rule = load_rules("./rules/rules.json")
 
     # 읽어온 파일과 rule파일을 이용해 탐지하기
-    result = match_rule(inputfile_list, rule)
+    result = match_rule(input_list, rule)
+    print("result : ", result)
 
-    print("json 내용 불러오기 : ",rule)
+    #결과 값 spring으로 넘기기
+    client_sock.sendall(json.dumps(result).encode('utf-8'))
+
+    #print("json 내용 불러오기 : ",rule)
     #print("파일 내용 불러오기 : ",inputfile_list)
 
 if __name__ == "__main__":

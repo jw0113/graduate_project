@@ -49,16 +49,18 @@ public class FileService implements IFileService {
 			bufferout.flush();
 			System.out.println("보낸 사이즈 : " + size);
 			
-			// 데이터 내용도 보낸다.
-			//Connect(f, bufferout);
 			
+			// 보낸 데이터의 크기를 받았다는 응답이 왔을 경우에 데이터 내용 보냄
 			if ((bufferin.read()) > 0) {
-				System.out.println(bufferin);
-				Connect(f,socket);
-				
+				Connect(f,socket);	
 			}
 			
-			
+			// 응답 result 받기
+			//byte[] tmp = new byte[size];
+			if ((bufferin.read()) > 0) {
+				int tmpnum = bufferin.read();
+				System.out.println("Server : " + tmpnum);	
+			}
 
 			
 		} catch (Exception e) {
