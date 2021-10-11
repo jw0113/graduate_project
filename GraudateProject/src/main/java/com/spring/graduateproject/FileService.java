@@ -52,7 +52,8 @@ public class FileService implements IFileService {
 			
 			// 보낸 데이터의 크기를 받았다는 응답이 왔을 경우에 데이터 내용 보냄
 			if ((bufferin.read()) > 0) {
-				Connect(f,socket);	
+				Connect(f,socket);
+				System.out.println("Server : " + bufferin.read());
 			}
 			
 			// 응답 result 받기

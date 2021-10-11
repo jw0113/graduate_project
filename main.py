@@ -75,12 +75,22 @@ def match_rule(inputfile, rulefile) -> dict:
         #print("result값 확인하자 : ",result)
     return result
 
+# client가 보낸 파일 받기
 def inputfiles(client_sock, size):
 
     print("size확인 : ", size)
     file = client_sock.recv(int(size.decode('utf-8')))
 
     return file.decode('utf-8')
+
+# 난독화 해제 코드
+def deofuscation(result,rules):
+
+    for index in result:
+        
+
+    
+    return "ok"
 
 
 
@@ -131,8 +141,10 @@ def main():
     result = match_rule(input_list, rule)
     print("result : ", result)
 
-    #결과 값 spring으로 넘기기
-    client_sock.sendall(json.dumps(result).encode('utf-8'))
+    # 탐지부분 난독화 해제 진행
+    deofuscation(result, rule)
+
+    
 
     #print("json 내용 불러오기 : ",rule)
     #print("파일 내용 불러오기 : ",inputfile_list)
