@@ -49,21 +49,33 @@ public class FileService implements IFileService {
 			bufferout.flush();
 			System.out.println("보낸 사이즈 : " + size);
 			
-			
-			// 보낸 데이터의 크기를 받았다는 응답이 왔을 경우에 데이터 내용 보냄
-			if ((bufferin.read()) > 0) {
-				Connect(f,socket);
-				System.out.println("Server : " + bufferin.read());
-			}
-			
-			// 응답 result 받기
-			//byte[] tmp = new byte[size];
-			if ((bufferin.read()) > 0) {
-				int tmpnum = bufferin.read();
-				System.out.println("Server : " + tmpnum);	
-			}
+			String deob_read = "";
+			while(true) {
 
-			
+				// 보낸 데이터의 크기를 받았다는 응답이 왔을 경우에 데이터 내용 보냄
+				if (bufferin.read() == 1) {
+					Connect(f,socket);
+					// System.out.println("Server.. : " + bufferin.read());
+				}
+				
+				// 탐지 & 해제 코드를 받음
+				if (bufferin.read() > 0) {
+					System.out.println("받은 값 : " + bufferin.read());
+					byte[] in = new byte[1024];
+					deob_read += new String(in,0,bufferin.read(in));
+					System.out.println("gg : " + deob_read);
+						
+				}
+				
+				// server에서 모든 코드를 보냈다면 while문 종료
+				if (bufferin.read() <0) {
+					break;
+				}
+			}
+			bufferout.close();
+			bufferin.close();
+			socket.close();
+
 		} catch (Exception e) {
 			System.out.println("Connect Fail");
 			e.printStackTrace();

@@ -169,8 +169,9 @@ def main():
 
     # 탐지부분 난독화 해제 진행
     deobfuscation(result, rule)
-    
 
+    # 최종 result 값 spring에 넘기기
+    client_sock.send(json.dumps(result).encode('utf-8'))
     
     
 
