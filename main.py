@@ -84,7 +84,7 @@ def inputfiles(client_sock, size):
     return file.decode('utf-8')
 
 # 난독화 해제 코드
-def deofuscation(result,rules):
+def deobfuscation(result,rules):
 
     for index in result:
         if len(result[index]) == 0:
@@ -144,7 +144,7 @@ def main():
     print("result : ", result)
 
     # 탐지부분 난독화 해제 진행
-    deofuscation(result, rule)
+    deobfuscation(result, rule)
 
     
 
