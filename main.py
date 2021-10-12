@@ -108,7 +108,7 @@ def deobfuscation(result,rules):
                     spec = importlib.util.spec_from_file_location(deob_name, deob_path)
                     mod = importlib.util.module_from_spec(spec)
                     spec.loader.exec_module(mod)
-                    mod.b_deobfuscation(result[index][0]['match'])
+                    mod.b_deobfuscation((result[index][0]['match']))
 
     
     return "ok"
