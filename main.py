@@ -47,8 +47,9 @@ def match_rule(inputfile, rulefile) -> dict:
             # 파일의 내용과 정규표현식 매칭
             match_re = re.findall(regexp, inputfile[index])
 
-            print("이게뭔지 확인",match_re)
-            print("크기 확인 : ", len(match_re))
+            #print("이게뭔지 확인",match_re)
+            #print("size" , size)
+            #print("크기 확인 : ", len(match_re))
 
             number = 0
             
@@ -70,7 +71,6 @@ def match_rule(inputfile, rulefile) -> dict:
                     match_result.append({'rule_no':rulefile[size]["no"], 'title':rulefile[size]["title"], 'descriptions':rulefile[size]["descriptions"], 'match':match, 'pos':(number+matching, number+matching+len(match))})
 
                     number += matching+len(match)
-        
         result[str(index+1)] = match_result
         #print("result값 확인하자 : ",result)
     return result
@@ -87,7 +87,9 @@ def inputfiles(client_sock, size):
 def deofuscation(result,rules):
 
     for index in result:
-        
+        if len(result[index]) == 0:
+            break
+        print(len(result[index]))
 
     
     return "ok"
