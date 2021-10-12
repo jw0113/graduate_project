@@ -33,7 +33,7 @@ def match_rule(inputfile, rulefile) -> dict:
     result = {}
 
     # 파일 내용 중 \n이 있을 경우 한줄씩 검사
-    print('inputfile 크기 : ',len(inputfile))
+    # print('inputfile 크기 : ',len(inputfile))
     for index in range(len(inputfile)):
         temp = inputfile[index]
         match_result = []
@@ -69,7 +69,8 @@ def match_rule(inputfile, rulefile) -> dict:
                     temp = temp[matching+len(match):]
 
                     # 탐지 결과 값을 추가한다.
-                    match_result.append({'rule_no':rulefile[size]["no"], 'title':rulefile[size]["title"], 'descriptions':rulefile[size]["descriptions"], 'match':match, 'pos':(number+matching, number+matching+len(match))})
+                    match_result.append({'rule_no':rulefile[size]["no"], 'title':rulefile[size]["title"], 'descriptions':rulefile[size]["descriptions"], 'match':match, 'pos':(number+matching, number+matching+len(match)),
+                                         'deobfuscation' : ''})
 
                     number += matching+len(match)
         result[str(index+1)] = match_result
@@ -79,18 +80,19 @@ def match_rule(inputfile, rulefile) -> dict:
 # client가 보낸 파일 받기
 def inputfiles(client_sock, size):
 
-    print("size확인 : ", size)
+    # print("size확인 : ", size)
     file = client_sock.recv(int(size.decode('utf-8')))
 
     return file.decode('utf-8')
 
 # 난독화 해제 코드
 def deobfuscation(result,rules):
+    result_deobfuscation = []
     
 
     for index in result :
-        print(result[index])
-        print(len(result[index]))
+        # print(result[index])
+        # print(len(result[index]))
         
         if len(result[index]) != 0:
 
@@ -108,10 +110,13 @@ def deobfuscation(result,rules):
                     spec = importlib.util.spec_from_file_location(deob_name, deob_path)
                     mod = importlib.util.module_from_spec(spec)
                     spec.loader.exec_module(mod)
-                    mod.b_deobfuscation((result[index][0]['match']))
-
+                    list_deob = mod.b_deobfuscation((result[index][0]['match']))
+            
+            # 탐지 부분 해제 코드 넣기
+            #result_deobfuscation.append(list_deob)
+            result[index][0]['deobfuscation'] = list_deob
+            print('최종 result : ', result)
     
-    return "ok"
 
 
 
@@ -145,15 +150,15 @@ def main():
     print("Connected by", addr)
 
     filesize = client_sock.recv(1024)
-    print("받아온 파일 : ", filesize)
+    # print("받아온 파일 : ", filesize)
     num = 1
     client_sock.send(num.to_bytes(4,byteorder='little'))
 
     # 데이터 크기만큼의 데이터 내용도 받아옴
     inputfile_list = inputfiles(client_sock, filesize)
-    print(type(inputfile_list))
+    # print(type(inputfile_list))
     input_list = inputfile_list.split('\n')
-    print(input_list,type(input_list))
+    # print(input_list,type(input_list))
 
     # json형식으로 저장한 Rules 가져오기
     rule = load_rules("./rules/rules.json")
@@ -164,7 +169,9 @@ def main():
 
     # 탐지부분 난독화 해제 진행
     deobfuscation(result, rule)
+    
 
+    
     
 
     #print("json 내용 불러오기 : ",rule)
