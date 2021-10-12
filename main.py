@@ -3,6 +3,7 @@ import os
 import json
 import re
 import socket
+import importlib.util
 
 # 리스트로 파일 읽기
 def load_file(path) -> list:
@@ -85,11 +86,30 @@ def inputfiles(client_sock, size):
 
 # 난독화 해제 코드
 def deobfuscation(result,rules):
+    
 
-    for index in result:
-        if len(result[index]) == 0:
-            break
+    for index in result :
+        print(result[index])
         print(len(result[index]))
+        
+        if len(result[index]) != 0:
+
+            for rule_index in range(len(rules)) :
+                print(result[index][0]['rule_no'])
+                print(rules[rule_index]['no'])
+                
+            
+                if result[index][0]['rule_no'] == rules[rule_index]['no'] :
+
+                    # 탐지 rule에서 해제 코드가 담겨있는 모듈 실행하기
+                    deob_path = rules[rule_index]['deobfuscation']
+                    deob_name = os.path.basename(deob_path)
+                    
+                    spec = importlib.util.spec_from_file_location(deob_name, deob_path)
+                    mod = importlib.util.module_from_spec(spec)
+                    spec.loader.exec_module(mod)
+                    mod.b_deobfuscation(result[index][0]['match'])
+                
 
     
     return "ok"
