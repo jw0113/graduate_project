@@ -21,7 +21,7 @@
         "no" : 3,
         "title" : "Powershell - Replace()",
         "descriptions" : "The deobfuscated code is Powershellscript-replace() obfuscation",
-        "regexp" : "([\"'])(?:(?=(\\?))\2.)*?\1+(\.replace)(\([a-z\'\",]{1,}\))",
+        "regexp" : "([\"'])(?:(?=(\\?))\\2.)*?\\1+(\\.replace)(\\([a-z\\'\",]{1,}\\))",
         "deobfuscation" : "python 경로",
         "code_convert" : "none",
         "tips" : ""
