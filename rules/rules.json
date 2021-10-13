@@ -1,7 +1,7 @@
 [
     {
         "no" : 1,
-        "title" : "BASE64",
+        "title" : "Powershell - BASE64",
         "descriptions" : "Decoding Base64 String. If the released code is incomplete, please try again this Executable",
         "regexp" : "([A-Za-z0-9=]{20,})",
         "deobfuscation" : "C:\\Users\\jiwoo\\Git\\graduateProject\\Deobfuscation_Code\\base64_deobfuscation.py",
@@ -13,6 +13,15 @@
         "title" : "Powershell - Split",
         "descriptions" : "The deobfuscated code is Powershellscript-split obfuscation",
         "regexp" : "(\"[a-z.:]{1,}[\\w/]{1,}\"[+].*)",
+        "deobfuscation" : "python 경로",
+        "code_convert" : "none",
+        "tips" : ""
+    },
+    {
+        "no" : 3,
+        "title" : "Powershell - Replace()",
+        "descriptions" : "The deobfuscated code is Powershellscript-replace() obfuscation",
+        "regexp" : "([\"'])(?:(?=(\\?))\2.)*?\1+(\.replace)(\([a-z\'\",]{1,}\))",
         "deobfuscation" : "python 경로",
         "code_convert" : "none",
         "tips" : ""
