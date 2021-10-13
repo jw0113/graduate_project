@@ -21,7 +21,25 @@
         "no" : 3,
         "title" : "Powershell - Replace()",
         "descriptions" : "The deobfuscated code is Powershellscript-replace() obfuscation",
-        "regexp" : "([\"'])(?:(?=(\\?))\\2.)*?\\1+(\\.replace)(\\([a-z\\'\",]{1,}\\))",
+        "regexp" : "([\"'])(?:(?=(\\?))\\2.)*?\\1+(\\.replace)(\\([a-zA-Z0-9\\'\",]{1,}\\))",
+        "deobfuscation" : "python 경로",
+        "code_convert" : "none",
+        "tips" : ""
+    },
+    {
+        "no" : 4,
+        "title" : "Powershell - Reorder",
+        "descriptions" : "The deobfuscated code is Powershellscript-reorder obfuscation",
+        "regexp" : "\"(\\{[0-9]+\\})+\"\\s{0,}\\-f\\s{0,}(([\\'](.*?)[\\'])\\,{0,})+",
+        "deobfuscation" : "python 경로",
+        "code_convert" : "none",
+        "tips" : ""
+    },
+    {
+        "no" : 5,
+        "title" : "Powershell - Back Ticks",
+        "descriptions" : "The deobfuscated code is Powershellscript-Back Ticks obfuscation",
+        "regexp" : "[a-zA-z0-9]{1,}[`](.{1})",
         "deobfuscation" : "python 경로",
         "code_convert" : "none",
         "tips" : ""
