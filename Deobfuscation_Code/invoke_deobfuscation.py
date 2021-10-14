@@ -1,3 +1,4 @@
+# powershell - invoke 해제 코드
 import sys
 import os
 
