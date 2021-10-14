@@ -43,5 +43,14 @@
         "deobfuscation" : "python 경로",
         "code_convert" : "none",
         "tips" : ""
+    },
+    {
+        "no" : 6,
+        "title" : "Powershell - Invoke",
+        "descriptions" : "The deobfuscated code is Powershellscript-invoke obfuscation",
+        "regexp" : "([I|i][N|n][V|v][O|o][K|k][a-zA-Z][\\S][a-zA-Z]*)",
+        "deobfuscation" : "python 경로",
+        "code_convert" : "none",
+        "tips" : ""
     }
 ]
