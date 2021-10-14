@@ -40,7 +40,7 @@
         "title" : "Powershell - Back Ticks",
         "descriptions" : "The deobfuscated code is Powershellscript-Back Ticks obfuscation",
         "regexp" : "[a-zA-z0-9]{1,}[`](.{1})",
-        "deobfuscation" : "python 경로",
+        "deobfuscation" : "C:\\Users\\jiwoo\\Git\\graduateProject\\Deobfuscation_Code\\backticks_deobfuscation.py",
         "code_convert" : "none",
         "tips" : ""
     },
@@ -49,7 +49,7 @@
         "title" : "Powershell - Invoke",
         "descriptions" : "The deobfuscated code is Powershellscript-invoke obfuscation",
         "regexp" : "([I|i][N|n][V|v][O|o][K|k][a-zA-Z][\\S][a-zA-Z]*)",
-        "deobfuscation" : "python 경로",
+        "deobfuscation" : "C:\\Users\\jiwoo\\Git\\graduateProject\\Deobfuscation_Code\\invoke_deobfuscation.py",
         "code_convert" : "none",
         "tips" : ""
     }
