@@ -12,8 +12,8 @@
         "no" : 2,
         "title" : "Powershell - Split",
         "descriptions" : "The deobfuscated code is Powershellscript-split obfuscation",
-        "regexp" : "(\"[a-z.:]{1,}[\\w/]{1,}\"[+].*)",
-        "deobfuscation" : "python 경로",
+        "regexp" : "\"[a-zA-z0-9\\.:/]{1,}\"[+]\"[a-zA-z0-9\\.:/]{1,}\"[+]*",
+        "deobfuscation" : "C:\\Users\\jiwoo\\Git\\graduateProject\\Deobfuscation_Code\\split_deobfuscation.py",
         "code_convert" : "none",
         "tips" : ""
     },
