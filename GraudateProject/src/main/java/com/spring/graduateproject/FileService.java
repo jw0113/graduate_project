@@ -25,7 +25,7 @@ public class FileService implements IFileService {
 	
 	// 수신 데이터 사이즈 전송
 	@Override
-	public void SizeCon(MultipartFile f, int size) {
+	public String SizeCon(MultipartFile f, int size) {
 		Socket socket;
 		String ip = "127.0.0.1";
 		int port = 5000;
@@ -60,29 +60,31 @@ public class FileService implements IFileService {
 				
 				// 탐지 & 해제 코드를 받음
 				if (bufferin.read() > 0) {
-					System.out.println("받은 값 : " + bufferin.read());
 					byte[] in = new byte[1024];
 					deob_read += new String(in,0,bufferin.read(in));
-					System.out.println("gg : " + deob_read);
+					
 						
 				}
-				
 				// server에서 모든 코드를 보냈다면 while문 종료
 				if (bufferin.read() <0) {
+					System.out.println("받은 값 : " + bufferin.read());
 					break;
 				}
 			}
+			//System.out.println("gg : " + deob_read);
 			bufferout.close();
 			bufferin.close();
 			socket.close();
+			return deob_read;
 
 		} catch (Exception e) {
 			System.out.println("Connect Fail");
 			e.printStackTrace();
+			return "fail";
 		}
 	}
 	
-	// 서버 연결
+	// 파일 전송
 	@Override
 	public void Connect(MultipartFile f, Socket socket) {
 		
@@ -97,8 +99,6 @@ public class FileService implements IFileService {
 			b.write(fileData);
 			System.out.println("send file...");
 			b.flush();
-			
-
 			
 		} catch (Exception e) {
 			System.out.println("Connect Fail");

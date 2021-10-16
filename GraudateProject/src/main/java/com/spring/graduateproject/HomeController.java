@@ -37,13 +37,7 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "home";
-	}
-	
-	// 파일 업로드 요청 들어왔을 경우
-	@RequestMapping(value="/upload", method = RequestMethod.GET)
-	public String upload() {
-		return "fileupload";
+		return "index";
 	}
 	
 	@ResponseBody
@@ -55,27 +49,30 @@ public class HomeController {
 		
 		// Multipart로 읽어온 파일들 저장
 		Iterator<String> filelist = file.getFileNames();
-		
+		String re = null;
 		//받은 파일을 모두 불러온다.
 		while(filelist.hasNext()) {
 			MultipartFile f = file.getFile(filelist.next());
 			int size = (int)f.getSize();
 			
 			// 파일의 크기 보냄
-			ifileservice.SizeCon(f,size);
-
+			re = ifileservice.SizeCon(f,size);
+			if(re == "fail") break;
 		}
-		
-		
-		return "OK";
+		System.out.println("re의 값 : " + re);
+		if(re == "fail") {
+			return "fail";
+		}
+		else {
+			return re;
+		}
 	}
 	
-	//Flask 연동
-	@RequestMapping(value="/connect", method = RequestMethod.GET)
-	public String connect() {
-		ConnectPython conn = new ConnectPython();
-		conn.conflask();
-		return "OK";
+
+	@RequestMapping(value = "/fileupload", method = RequestMethod.POST)
+	public void resulticon(@RequestBody String result) {
+		System.out.println("받은 값 : "+ result);
 	}
+	
 	
 }

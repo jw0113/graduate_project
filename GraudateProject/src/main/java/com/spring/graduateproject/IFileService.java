@@ -17,7 +17,7 @@ public interface IFileService {
 	void Connect(MultipartFile f, Socket socket);
 	
 	// 데이터 사이즈 연결
-	void SizeCon(MultipartFile f, int size);
+	String SizeCon(MultipartFile f, int size);
 	
 
 }
