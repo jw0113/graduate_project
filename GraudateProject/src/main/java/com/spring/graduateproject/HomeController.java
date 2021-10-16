@@ -69,9 +69,10 @@ public class HomeController {
 	}
 	
 
-	@RequestMapping(value = "/fileupload", method = RequestMethod.POST)
-	public void resulticon(@RequestBody String result) {
+	@RequestMapping(value = "/uploadfile", method = RequestMethod.POST)
+	public String resulticon(@RequestBody String result) {
 		System.out.println("받은 값 : "+ result);
+		return "home";
 	}
 	
 	

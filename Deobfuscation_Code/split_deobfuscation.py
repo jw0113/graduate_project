@@ -1,6 +1,6 @@
 # powershell - split 탐지 코드
 
-def split_deob(deobfuscation) :
+def b_deobfuscation(deobfuscation) :
 
     sp_str = deobfuscation
     sp_deob = sp_str.replace("+","")

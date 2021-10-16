@@ -77,6 +77,17 @@
                 cursor:pointer;
                 vertical-align:top
             }
+            .submit{
+                background-color:#A8352F;
+                -moz-border-radius:4px;
+                -webkit-border-radius:4px;
+                border-radius:4px;display:inline-block;
+                color:#fff;
+                font-family:arial;font-size:13px;font-weight:normal;
+                padding:4px 15px;
+                cursor:pointer;
+                vertical-align:top
+            }
         </style>
         <script type = "text/javascript" src="./resources/js/jquery-3.6.0.min.js"></script>
         <script type = "text/javascript">
@@ -141,8 +152,11 @@
 					this.setProgress = function(progress){
 
 						var progressWidth = progress * this.progressBar.width() / 100;
-						this.progressBar.find("div").animate({width : progressWidth},600).html(progress + "%");
-						if (parseInt(progress) >= 100){ this.abort.hide(); }
+						this.progressBar.find("div").animate({width : progressWidth},1000).html(progress + "%");
+						if (parseInt(progress) >= 100){ 
+							this.abort.hide();
+							this.submit = $("<div class='submit'>결과 확인</div>").appendTo(this.statusbar);
+						}
 					}
 					// 중지 버튼을 눌렀을 경우 이벤트 처리
 					this.setAbort = function(f_ajax){
@@ -172,7 +186,8 @@
 									var total = e.total;
 									// 전송 중이라면 전송된 바이트들을 계산하여 percent 생성
 									if (e.lengthComputable){ 
-										percent = Math.ceil(e.loaded / e.total * 100);
+										percent = Math.ceil((e.loaded / e.total * 100) - 10);
+										
 									}
 									else{
 										console.log("error");
@@ -189,9 +204,17 @@
 							}
 							else{
 								console.log("success : ", data);
-								//status.setProgress(100);
-								//location.href = "/graduate/uploadfile";
-								$(document).load("/graduate/uploadfile",data)
+								status.setProgress(100);
+								$.ajax({
+									type : "POST",
+									url : "/graduateproject/uploadfile",
+									data : data,
+									dataType : "text",
+									processData : false,
+									contentType : false
+								})
+								
+								
 							}
 						},
 					});
