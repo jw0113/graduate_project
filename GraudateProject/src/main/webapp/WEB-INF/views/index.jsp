@@ -119,7 +119,7 @@
 						// 파일 업로드시 
 						var status = new createStatusBar(obj)
 						status.setFile(files[i].name, files[i].size);
-						sendFile(formData,status);
+						sendFile(files.length,formData,status);
 					}
 					
 				}
@@ -160,7 +160,6 @@
 						this.progressBar.find("div").animate({width : progressWidth},1000).html(progress + "%");
 						if (parseInt(progress) >= 100){ 
 							this.abort.hide();
-							//this.submit = $("<div><div class='submit'>결과 확인</div></div>").appendTo(this.statusbar);
 						}
 					}
 					// 중지 버튼을 눌렀을 경우 이벤트 처리
@@ -172,7 +171,9 @@
 
 					}
 				}
-				function sendFile(formData, status){
+				var rearray = new Array();
+				var reindex = 0;
+				function sendFile(filesize, formData, status){
 					var f_ajax = $.ajax({
 						type : "POST",
 						url : "/graduateproject/upload",
@@ -210,10 +211,25 @@
 							else{
 								console.log("success : ", data);
 								status.setProgress(100);
+								rearray[reindex] = data;
+								reindex++;
+								if (reindex == filesize) nextPage(rearray);
 							}
 						},
 					});
 					status.setAbort(f_ajax);
+				}
+
+				// 결과 값 넘기기
+				function nextPage(rearray){
+					$.ajax({
+						type : "POST",
+						url : "/graduateproject/uploadfile",
+						data : rearray,
+						dataType : "html",
+						processData : false,
+						contentType : false
+					})
 				}
 
 			});

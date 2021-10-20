@@ -1,4 +1,4 @@
-package com.spring.graduateproject;
+package com.spring.graduateproject.fileupload.service;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -16,12 +16,17 @@ import java.net.URL;
 import java.util.Iterator;
 import java.util.UUID;
 
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.spring.graduateproject.fileupload.repository.IFileUploadMapper;
+
 @Service
 public class FileService implements IFileService {
+	
+	@Autowired
+	private IFileUploadMapper mapper;
 	
 	// 수신 데이터 사이즈 전송
 	@Override
@@ -67,7 +72,7 @@ public class FileService implements IFileService {
 				}
 				// server에서 모든 코드를 보냈다면 while문 종료
 				if (bufferin.read() <0) {
-					System.out.println("받은 값 : " + bufferin.read());
+					//System.out.println("받은 값 : " + bufferin.read());
 					break;
 				}
 			}
@@ -104,6 +109,11 @@ public class FileService implements IFileService {
 			System.out.println("Connect Fail");
 			e.printStackTrace();
 		}
+	}
+	
+	@Override
+	public void show() {
+		System.out.println(mapper.show());
 	}
 
 }

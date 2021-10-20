@@ -1,4 +1,4 @@
-package com.spring.graduateproject;
+package com.spring.graduateproject.fileupload.service;
 
 import java.io.BufferedOutputStream;
 import java.io.OutputStream;
@@ -18,6 +18,8 @@ public interface IFileService {
 	
 	// 데이터 사이즈 연결
 	String SizeCon(MultipartFile f, int size);
+	
+	void show();
 	
 
 }

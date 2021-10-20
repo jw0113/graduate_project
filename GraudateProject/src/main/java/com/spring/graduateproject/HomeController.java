@@ -7,6 +7,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import com.spring.graduateproject.fileupload.service.IFileService;
 
 @Controller
 public class HomeController {
@@ -38,7 +42,7 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "index";
+		return "home";
 	}
 	
 	@ResponseBody
@@ -72,12 +76,17 @@ public class HomeController {
 			return re;
 		}
 	}
-	
 
 	@RequestMapping(value = "/uploadfile", method = RequestMethod.POST)
-	public String resulticon(@RequestBody String result) {
-		System.out.println("받은 값 : "+ result);
-		return "home";
+	public String resulticon(@RequestBody String result, HttpSession session) {
+		System.out.println("받은 값 : "+ result.length());
+		session.setAttribute("result", result);
+		return "/uploadfile";
+	}
+	
+	@RequestMapping(value="/database", method=RequestMethod.GET)
+	public void show() {
+		ifileservice.show();
 	}
 	
 	
