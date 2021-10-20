@@ -110,6 +110,7 @@
 					fileUpload(files,$(".dragAndDropDiv"));
 				});
 				function fileUpload(files,obj){
+					
 					for (var i=0; i<files.length; i++){
 						var formData = new FormData();
 						formData.append("file", files[i])
@@ -119,12 +120,16 @@
 						var status = new createStatusBar(obj)
 						status.setFile(files[i].name, files[i].size);
 						sendFile(formData,status);
-
 					}
+					
 				}
+				var rowCount = 0;
 				// 파일 drop시 파일 업로드 상태 표시
 				function createStatusBar(obj){
-					this.statusbar = $("<div class='statusbar'></div>")
+					rowCount++;
+					var row = "odd";
+					if(rowCount %2 == 0) row = "even";
+					this.statusbar = $("<div class='statusbar "+row+"'></div>");
 					this.filename = $("<div class='filename'></div>").appendTo(this.statusbar);
 					this.filesize = $("<div class='filesize'></div>").appendTo(this.statusbar);
 					this.progressBar = $("<div class='progressBar'><div></div></div>").appendTo(this.statusbar);
@@ -155,7 +160,7 @@
 						this.progressBar.find("div").animate({width : progressWidth},1000).html(progress + "%");
 						if (parseInt(progress) >= 100){ 
 							this.abort.hide();
-							this.submit = $("<div class='submit'>결과 확인</div>").appendTo(this.statusbar);
+							//this.submit = $("<div><div class='submit'>결과 확인</div></div>").appendTo(this.statusbar);
 						}
 					}
 					// 중지 버튼을 눌렀을 경우 이벤트 처리
@@ -169,13 +174,13 @@
 				}
 				function sendFile(formData, status){
 					var f_ajax = $.ajax({
-						
 						type : "POST",
 						url : "/graduateproject/upload",
 						data : formData,
 						dataType : "text",
 						processData : false,
 						contentType : false,
+						async: false,
 						// xhr 객체를 이용하여 서버와의 데이터 전달 진행상황을 확인
 						xhr: function(){
 							var upload_xhr = $.ajaxSettings.xhr();
@@ -205,16 +210,6 @@
 							else{
 								console.log("success : ", data);
 								status.setProgress(100);
-								$.ajax({
-									type : "POST",
-									url : "/graduateproject/uploadfile",
-									data : data,
-									dataType : "text",
-									processData : false,
-									contentType : false
-								})
-								
-								
 							}
 						},
 					});

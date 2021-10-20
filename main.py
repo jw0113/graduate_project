@@ -139,39 +139,42 @@ def main():
     # -------------------------------------------------------------------------------------
 
     # socket통신을 이용해 연결 후 데이터크기 받아옴 (소켓 크기 설정 위해)
-    host = "127.0.0.1"
-    port = 5000
-    server = socket.socket(socket.AF_INET)
-    server.bind((host,port))
-    server.listen(10)
+    while(True):
+        host = "127.0.0.1"
+        port = 5000
+        server = socket.socket(socket.AF_INET)
+        server.bind((host,port))
+        server.listen(10)
 
-    print("waiting...")
-    client_sock, addr = server.accept()
-    print("Connected by", addr)
+        print("waiting...")
+        client_sock, addr = server.accept()
+        print("Connected by", addr)
 
-    filesize = client_sock.recv(1024)
-    # print("받아온 파일 : ", filesize)
-    num = 1
-    client_sock.send(num.to_bytes(4,byteorder='little'))
+        filesize = client_sock.recv(1024)
+        print("받아온 파일 : ", filesize)
+        num = 1
+        client_sock.send(num.to_bytes(4,byteorder='little'))
 
-    # 데이터 크기만큼의 데이터 내용도 받아옴
-    inputfile_list = inputfiles(client_sock, filesize)
-    # print(type(inputfile_list))
-    input_list = inputfile_list.split('\n')
-    # print(input_list,type(input_list))
+        # 데이터 크기만큼의 데이터 내용도 받아옴
+        inputfile_list = inputfiles(client_sock, filesize)
+        # print(type(inputfile_list))
+        input_list = inputfile_list.split('\n')
+        # print(input_list,type(input_list))
 
-    # json형식으로 저장한 Rules 가져오기
-    rule = load_rules("./rules/rules.json")
+        # json형식으로 저장한 Rules 가져오기
+        rule = load_rules("./rules/rules.json")
 
-    # 읽어온 파일과 rule파일을 이용해 탐지하기
-    result = match_rule(input_list, rule)
-    print("result : ", result)
+        # 읽어온 파일과 rule파일을 이용해 탐지하기
+        result = match_rule(input_list, rule)
+        print("result : ", result)
 
-    # 탐지부분 난독화 해제 진행
-    deobfuscation(result, rule)
+        # 탐지부분 난독화 해제 진행
+        deobfuscation(result, rule)
 
-    # 최종 result 값 spring에 넘기기
-    client_sock.send(json.dumps(result).encode('utf-8'))
+        # 최종 result 값 spring에 넘기기
+        client_sock.send(json.dumps(result).encode('utf-8'))
+
+        client_sock.close()
     
     
 

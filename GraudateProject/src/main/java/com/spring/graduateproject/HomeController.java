@@ -1,5 +1,6 @@
 package com.spring.graduateproject;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Iterator;
@@ -54,10 +55,14 @@ public class HomeController {
 		while(filelist.hasNext()) {
 			MultipartFile f = file.getFile(filelist.next());
 			int size = (int)f.getSize();
-			
-			// 파일의 크기 보냄
-			re = ifileservice.SizeCon(f,size);
-			if(re == "fail") break;
+			try {
+				// 파일의 크기 보냄
+				re = ifileservice.SizeCon(f,size);
+				if(re == "fail") break;
+			} catch(IllegalStateException e) {
+				e.printStackTrace();
+			}
+
 		}
 		System.out.println("re의 값 : " + re);
 		if(re == "fail") {
