@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.spring.graduateproject.fileupload.model.FileUploadVO;
 import com.spring.graduateproject.fileupload.service.IFileService;
 
 @Controller
@@ -29,6 +30,7 @@ public class HomeController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	@Autowired
 	private IFileService ifileservice;
+	private FileUploadVO vo = new FileUploadVO();
 	
 	//기본 메인 화면
 	@RequestMapping(value = "/", method = RequestMethod.GET)
@@ -42,7 +44,7 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "home";
+		return "index";
 	}
 	
 	@ResponseBody
@@ -63,6 +65,25 @@ public class HomeController {
 				// 파일의 크기 보냄
 				re = ifileservice.SizeCon(f,size);
 				if(re == "fail") break;
+				
+				try {
+					String data = new String(f.getBytes());
+					vo.setFilename(f.getOriginalFilename());
+					//vo.setData(data);
+					// 기존 파일 db저장
+					//ifileservice.uploadOriginalfile(f.getOriginalFilename(),data);
+					
+					// 탐지&해제 데이터 db저장 - vo같이 넘기자
+					ifileservice.uploadResultfile(vo, re);
+					
+					
+					
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				
 			} catch(IllegalStateException e) {
 				e.printStackTrace();
 			}
@@ -83,11 +104,7 @@ public class HomeController {
 		session.setAttribute("result", result);
 		return "/uploadfile";
 	}
-	
-	@RequestMapping(value="/database", method=RequestMethod.GET)
-	public void show() {
-		ifileservice.show();
-	}
+
 	
 	
 }

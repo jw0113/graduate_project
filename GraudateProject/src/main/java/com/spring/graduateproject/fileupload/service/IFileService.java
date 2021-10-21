@@ -7,6 +7,8 @@ import java.util.Iterator;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.spring.graduateproject.fileupload.model.FileUploadVO;
+
 
 public interface IFileService {
 	
@@ -19,7 +21,13 @@ public interface IFileService {
 	// 데이터 사이즈 연결
 	String SizeCon(MultipartFile f, int size);
 	
-	void show();
+	// 기존 파일 db 저장
+	void uploadOriginalfile(String filename, String data);
+	
+	// 탐지&해제 결과 db 저장
+	void uploadResultfile(FileUploadVO vo, String result);
+	
+
 	
 
 }

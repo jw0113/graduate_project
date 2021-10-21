@@ -13,14 +13,23 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.Socket;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.UUID;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.spring.graduateproject.fileupload.model.FileUploadVO;
 import com.spring.graduateproject.fileupload.repository.IFileUploadMapper;
+
+
 
 @Service
 public class FileService implements IFileService {
@@ -111,9 +120,54 @@ public class FileService implements IFileService {
 		}
 	}
 	
+	// 기존 파일 db 저장
 	@Override
-	public void show() {
-		System.out.println(mapper.show());
+	public void uploadOriginalfile(String filename, String data) {
+		// db 내용 총 갯수 확인
+		int index = mapper.total();
+		index += 1;
+		// original data 저장
+		mapper.uploadOriginalfile(index, filename, data);
 	}
+	
+	// 탐지&해제 result db 저장
+	@Override
+	public void uploadResultfile(FileUploadVO vo, String result) {
+
+		result = "{"+result;
+		
+		// db 내용 총 갯수 확인
+		int index = mapper.total();
+		
+		try {
+			// 탐지&해제 코드 json 파싱 작업
+			JSONParser jsonParse = new JSONParser();
+			JSONObject jsonObj = (JSONObject) jsonParse.parse(result);
+			JSONArray resultArray = (JSONArray) jsonObj.get("result");
+			
+			for(int i =0; i<resultArray.size();i++) {
+				JSONObject resultObject = (JSONObject)resultArray.get(i);
+				vo.setIndex(index+1);
+				vo.setTitle(String.valueOf(resultObject.get("title")));
+				vo.setDescription(String.valueOf(resultObject.get("descriptions")));
+				vo.setMatch(String.valueOf(resultObject.get("match")));
+				vo.setPosfirst(Integer.valueOf(String.valueOf(resultObject.get("posfirst"))));
+				vo.setPoslast(Integer.valueOf(String.valueOf(resultObject.get("poslast"))));
+				vo.setDeob(String.valueOf(resultObject.get("deobfuscation")));
+				
+				
+				// 탐지&해제 result db 저장
+				mapper.uploadResultfile(vo);
+			}
+			
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+	}
+	
 
 }

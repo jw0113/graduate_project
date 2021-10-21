@@ -69,11 +69,14 @@ def match_rule(inputfile, rulefile) -> dict:
                     temp = temp[matching+len(match):]
 
                     # 탐지 결과 값을 추가한다.
-                    match_result.append({'rule_no':rulefile[size]["no"], 'title':rulefile[size]["title"], 'descriptions':rulefile[size]["descriptions"], 'match':match, 'pos':(number+matching, number+matching+len(match)),
+                    match_result.append({'rule_no':rulefile[size]["no"], 'title':rulefile[size]["title"], 'descriptions':rulefile[size]["descriptions"], 'match':match, 'posfirst':number+matching, 'poslast':number+matching+len(match),
                                          'deobfuscation' : ''})
 
                     number += matching+len(match)
-        result[str(index+1)] = match_result
+                    
+                if len(match_result) > 0:
+                    result["result"] = match_result
+
         #print("result값 확인하자 : ",result)
     return result
 
