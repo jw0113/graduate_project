@@ -74,7 +74,7 @@ public class FileService implements IFileService {
 				
 				// 탐지 & 해제 코드를 받음
 				if (bufferin.read() > 0) {
-					byte[] in = new byte[1024];
+					byte[] in = new byte[2048];
 					deob_read += new String(in,0,bufferin.read(in));
 					
 						
@@ -133,11 +133,12 @@ public class FileService implements IFileService {
 	// 탐지&해제 result db 저장
 	@Override
 	public void uploadResultfile(FileUploadVO vo, String result) {
+		System.out.println("result값 : "+result);
 
 		result = "{"+result;
 		
 		// db 내용 총 갯수 확인
-		int index = mapper.total();
+		//int index = mapper.total();
 		
 		try {
 			// 탐지&해제 코드 json 파싱 작업
@@ -147,10 +148,11 @@ public class FileService implements IFileService {
 			
 			for(int i =0; i<resultArray.size();i++) {
 				JSONObject resultObject = (JSONObject)resultArray.get(i);
-				vo.setIndex(index+1);
+				//vo.setIndex(index+1);
 				vo.setTitle(String.valueOf(resultObject.get("title")));
 				vo.setDescription(String.valueOf(resultObject.get("descriptions")));
 				vo.setMatch(String.valueOf(resultObject.get("match")));
+				System.out.println("pos : " + resultObject.get("posfirst") + resultObject.get("poslast"));
 				vo.setPosfirst(Integer.valueOf(String.valueOf(resultObject.get("posfirst"))));
 				vo.setPoslast(Integer.valueOf(String.valueOf(resultObject.get("poslast"))));
 				vo.setDeob(String.valueOf(resultObject.get("deobfuscation")));
@@ -164,9 +166,14 @@ public class FileService implements IFileService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	// upload file 파일명과 갯수 가져오기
+	@Override
+	public List<FileUploadVO> uploadFileCheck(){
+		List<FileUploadVO> dbfilelist = mapper.uploadFileCheck();
 		
-		
-		
+		return dbfilelist;
 	}
 	
 

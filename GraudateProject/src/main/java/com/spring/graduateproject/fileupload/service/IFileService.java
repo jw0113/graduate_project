@@ -4,6 +4,7 @@ import java.io.BufferedOutputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.util.Iterator;
+import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -26,6 +27,9 @@ public interface IFileService {
 	
 	// 탐지&해제 결과 db 저장
 	void uploadResultfile(FileUploadVO vo, String result);
+	
+	// upload한 파일명과 갯수 가져오기
+	List<FileUploadVO> uploadFileCheck();
 	
 
 	

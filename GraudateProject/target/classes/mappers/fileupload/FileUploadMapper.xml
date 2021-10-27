@@ -2,6 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.spring.graduateproject.fileupload.repository.IFileUploadMapper">
+
+	<!-- DB컬럼명과 VO클래스의 필드명 매핑 작업 -->
+	<resultMap type="com.spring.graduateproject.fileupload.model.FileUploadVO" id="FileUploadMap">
+		<id property="index" column="index" />
+		<result property="filename" column="filename" />
+		<result property="title" column="title" />
+		<result property="description" column="description" />
+		<result property="data" column="data" />
+		<result property="match" column="match" />
+		<result property="deob" column="deob" />
+		<result property="posfirst" column="postfirst" />
+		<result property="poslast" column="postlast" />
+	</resultMap>
 	
 	<!-- db 내용 총 갯수 확인 -->
 	<select id="total" resultType="int">
@@ -22,6 +35,13 @@
 		(`index`,`filename`,`title`,`description`,`match`,`deob`,`posfirst`,`poslast`)
 		VALUES (#{index}, #{filename}, #{title}, #{description}, #{match}, #{deob}, #{posfirst}, #{poslast})
 	</insert>
+	
+	<!-- upload한 기존 파일 불러오기 -->
+	<select id="uploadFileCheck" resultMap="FileUploadMap">
+		SELECT * 
+		FROM fileupload
+		WHERE `title` is NULL
+	</select>
 
 
 

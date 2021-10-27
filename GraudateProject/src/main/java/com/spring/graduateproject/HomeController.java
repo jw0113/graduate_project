@@ -51,8 +51,7 @@ public class HomeController {
 	// 파일 업로드 한 파일을 가져옴
 	// MultipartResolver : 인코딩 타입이 Multipart인 경우, 파라미터나 파일을 추가적 처리 없이 Multipart형식의 파라미터와 파일 정보를 쉽게 구할 수 있
 	@RequestMapping(value="/upload", method = RequestMethod.POST)
-	public String uploadcheck(MultipartHttpServletRequest file) {
-		
+	public String uploadcheck(MultipartHttpServletRequest file) {	
 		
 		// Multipart로 읽어온 파일들 저장
 		Iterator<String> filelist = file.getFileNames();
@@ -69,27 +68,22 @@ public class HomeController {
 				try {
 					String data = new String(f.getBytes());
 					vo.setFilename(f.getOriginalFilename());
-					//vo.setData(data);
+
 					// 기존 파일 db저장
 					//ifileservice.uploadOriginalfile(f.getOriginalFilename(),data);
 					
 					// 탐지&해제 데이터 db저장 - vo같이 넘기자
-					ifileservice.uploadResultfile(vo, re);
-					
-					
+					//ifileservice.uploadResultfile(vo, re);	
 					
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
-				
 			} catch(IllegalStateException e) {
 				e.printStackTrace();
 			}
 
 		}
-		System.out.println("re의 값 : " + re);
 		if(re == "fail") {
 			return "fail";
 		}
@@ -97,14 +91,20 @@ public class HomeController {
 			return re;
 		}
 	}
-
-	@RequestMapping(value = "/uploadfile", method = RequestMethod.POST)
-	public String resulticon(@RequestBody String result, HttpSession session) {
-		System.out.println("받은 값 : "+ result.length());
-		session.setAttribute("result", result);
-		return "/uploadfile";
+	
+	// 탐지&해제 버튼 result 화면 보기
+	@RequestMapping(value = "/result1", method = RequestMethod.GET)
+	public String result1(Model model) {
+		
+		// upload한 파일 개수와 파일 명 가져오기
+		List<FileUploadVO> dbfilelist = ifileservice.uploadFileCheck();
+		model.addAttribute("result", dbfilelist);
+		return "result1";
 	}
-
+	
+	// 선택한 파일의 탐지&해제 결과 화면 보기
+	
+	
 	
 	
 }

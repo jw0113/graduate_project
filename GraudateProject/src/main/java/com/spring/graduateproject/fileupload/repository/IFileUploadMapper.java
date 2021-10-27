@@ -1,5 +1,7 @@
 package com.spring.graduateproject.fileupload.repository;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 import com.spring.graduateproject.fileupload.model.FileUploadVO;
@@ -14,6 +16,9 @@ public interface IFileUploadMapper {
 	
 	// 탐지&해제 내용 db 저장
 	void uploadResultfile(FileUploadVO vo);
+	
+	// 업로드한 기존 파일 불러오기
+	List<FileUploadVO> uploadFileCheck();
 
 
 }
