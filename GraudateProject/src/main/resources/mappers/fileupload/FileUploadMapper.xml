@@ -54,7 +54,7 @@
 	<select id="selectFileNameOri" resultType="string">
 		SELECT `data`
 		FROM fileupload
-		WHERE `filename` = #{filename} AND `title` is NULL
+		WHERE `filename` = #{filename} AND `title` is not NULL LIMIT 1
 	</select>
 
 

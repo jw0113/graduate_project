@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -56,19 +57,22 @@
 
         <script type = "text/javascript" src="./resources/js/jquery-3.6.0.min.js"></script>
         <script type = "text/javascript">
-        	$(document).ready(function(){
-            	var fstr = $('#match').val();
-            	var str = document.getElementById('contents').innerText;
-            	console.log(str);
-            	console.log(fstr);
-            	var regex = new RegExp(fstr,"g");
-            	console.log(regex);
-            	str.replace(regex, "<span class='highlight'>"+ regex +"</span>");
-            	console.log(str);
-            	$('#contents').highlight(fstr);
-            });
+        	var arr = new Array();
+        	<c:forEach var="r" items="${dbresult}">
+        		
+        		arr.push({deob: "${fn:escapeXml(r.deob)}"});
+        	</c:forEach>
+        	
+        	function display(index){
+            	alert(index);
+                var addstr = "<div>"+arr[index].deob+"</div>";
+                $('right').after(addstr);
+            }
 
-        </script>
+    	
+        	
+	
+    	</script>
 		
     </head>
    
@@ -172,14 +176,12 @@
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">결과 확인</li>
                         </ol>
-                        <c:forEach var="r" items="${dbresult}">
-                        	<input type="hidden" id="match" value="${r.match}">
-                        	<div class="left" id="contents">${r.data}</div>
-                       		<div class="right">
-                       			<div>탐지 & 해제</div>
-                       			<textarea rows="50" cols="50"> ${r.match} </textarea>
-                       		</div>
-                       	</c:forEach>
+                        <div class="left">
+                        	${data}
+                        </div>
+                        <div class="right">
+                        	
+                        </div>
                     </div>
                 </main>
                 
@@ -193,4 +195,5 @@
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="./resources/js/datatables-simple-demo.js"></script>
     </body>
+    
 </html>
