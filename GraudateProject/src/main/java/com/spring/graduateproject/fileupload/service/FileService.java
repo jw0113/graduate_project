@@ -74,7 +74,7 @@ public class FileService implements IFileService {
 				
 				// 탐지 & 해제 코드를 받음
 				if (bufferin.read() > 0) {
-					byte[] in = new byte[2048];
+					byte[] in = new byte[9999];
 					deob_read += new String(in,0,bufferin.read(in));
 					
 						

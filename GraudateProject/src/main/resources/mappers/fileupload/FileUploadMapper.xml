@@ -32,8 +32,8 @@
 	<!-- 탐지&해제 result db 저장 -->
 	<insert id="uploadResultfile">
 		INSERT INTO fileupload
-		(`index`,`filename`,`title`,`description`,`match`,`deob`,`posfirst`,`poslast`)
-		VALUES (#{index}, #{filename}, #{title}, #{description}, #{match}, #{deob}, #{posfirst}, #{poslast})
+		(`index`,`filename`,`title`,`description`,`match`,`deob`,`posfirst`,`poslast`, `data`)
+		VALUES (#{index}, #{filename}, #{title}, #{description}, #{match}, #{deob}, #{posfirst}, #{poslast}, #{data})
 	</insert>
 	
 	<!-- upload한 기존 파일 불러오기 -->

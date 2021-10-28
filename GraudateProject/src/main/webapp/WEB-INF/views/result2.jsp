@@ -174,7 +174,7 @@
                         </ol>
                         <c:forEach var="r" items="${dbresult}">
                         	<input type="hidden" id="match" value="${r.match}">
-                        	<div class="left" id="contents">${data}</div>
+                        	<div class="left" id="contents">${r.data}</div>
                        		<div class="right">
                        			<div>Å½Áö & ÇØÁ¦</div>
                        			<textarea rows="50" cols="50"> ${r.match} </textarea>
