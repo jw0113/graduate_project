@@ -13,9 +13,6 @@ import com.spring.graduateproject.fileupload.model.FileUploadVO;
 
 public interface IFileService {
 	
-	// python 서버에 파일 전송
-//	void sendToserver(MultipartFile f);
-	
 	// 서버 연결
 	void Connect(MultipartFile f, Socket socket);
 	
@@ -30,6 +27,12 @@ public interface IFileService {
 	
 	// upload한 파일명과 갯수 가져오기
 	List<FileUploadVO> uploadFileCheck();
+	
+	// 해당파일명에 대한 해제&탐지 데이터 내용 가져오기
+	List<FileUploadVO> selectFileName(String filename);
+	
+	// 해당 파일명에 대한 원본 데이터 가져오기
+	String selectFileNameOri(String filename);
 	
 
 	

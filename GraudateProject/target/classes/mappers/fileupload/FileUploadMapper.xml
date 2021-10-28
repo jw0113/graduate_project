@@ -12,8 +12,8 @@
 		<result property="data" column="data" />
 		<result property="match" column="match" />
 		<result property="deob" column="deob" />
-		<result property="posfirst" column="postfirst" />
-		<result property="poslast" column="postlast" />
+		<result property="posfirst" column="posfirst" />
+		<result property="poslast" column="poslast" />
 	</resultMap>
 	
 	<!-- db 내용 총 갯수 확인 -->
@@ -41,6 +41,20 @@
 		SELECT * 
 		FROM fileupload
 		WHERE `title` is NULL
+	</select>
+	
+	<!-- 해당 파일명에 대한 해제&탐지 데이터 불러오기 -->
+	<select id="uploadFileData" resultMap="FileUploadMap">
+		SELECT *
+		FROM fileupload
+		WHERE `filename` = #{filename} AND `title` is not NULL
+	</select>
+	
+	<!-- 해당 파일명에 대한 원래 코드 불러오기 -->
+	<select id="selectFileNameOri" resultType="string">
+		SELECT `data`
+		FROM fileupload
+		WHERE `filename` = #{filename} AND `title` is NULL
 	</select>
 
 

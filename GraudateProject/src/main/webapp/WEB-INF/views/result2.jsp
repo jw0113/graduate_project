@@ -13,10 +13,65 @@
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="./resources/css/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+        <style>
+        	.resultData {
+                border: 3px dashed #92AAB0;
+                width: 550px;
+                height: 900px;
+                color: #92AAB0;
+                text-align: center;
+                vertical-align: middle;
+                padding: 10px 0px 10px 10px;
+                font-size:200%;
+                display: table-cell;
+            }
+            .highlight{
+            	font-weight:bold;
+            	color:red;
+           	}
+           	div.left {
+        		width: 50%;
+        		float: left;
+        		box-sizing: border-box;
+        		flex-direction : column;
+        		flex-wrap : wrap;
+        		word-break : break-all;
+    		}
+    		div.right {
+        		width: 50%;
+        		float: right;
+        		box-sizing: border-box;
+        	
+    		}
+    		textarea {
+    			border: 1px solid #0054FF;
+    			border-radius: 0px;
+    			height: 30px;
+    			width: 300px;
+    		}
+
+
+
+        </style>
 
         <script type = "text/javascript" src="./resources/js/jquery-3.6.0.min.js"></script>
+        <script type = "text/javascript">
+        	$(document).ready(function(){
+            	var fstr = $('#match').val();
+            	var str = document.getElementById('contents').innerText;
+            	console.log(str);
+            	console.log(fstr);
+            	var regex = new RegExp(fstr,"g");
+            	console.log(regex);
+            	str.replace(regex, "<span class='highlight'>"+ regex +"</span>");
+            	console.log(str);
+            	$('#contents').highlight(fstr);
+            });
+
+        </script>
 		
     </head>
+   
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
@@ -113,19 +168,18 @@
                 <main>
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Code Decryption</h1>
+                        
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">결과 확인</li>
                         </ol>
-                       		<c:forEach var="r" items="${result}">
-                       			<div class="card bg-primary text-white mb-4">
-                       				<div class="card-body">${r.filename}</div>
-                       				<div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="/graduateproject/result2?filename=${r.filename}">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                       			</div>
-                       		</c:forEach>
-                        
+                        <c:forEach var="r" items="${dbresult}">
+                        	<input type="hidden" id="match" value="${r.match}">
+                        	<div class="left" id="contents">${data}</div>
+                       		<div class="right">
+                       			<div>탐지 & 해제</div>
+                       			<textarea rows="50" cols="50"> ${r.match} </textarea>
+                       		</div>
+                       	</c:forEach>
                     </div>
                 </main>
                 

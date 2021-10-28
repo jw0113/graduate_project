@@ -19,6 +19,12 @@ public interface IFileUploadMapper {
 	
 	// 업로드한 기존 파일 불러오기
 	List<FileUploadVO> uploadFileCheck();
+	
+	// 해당 파일명에 대한 해제&탐지 불러오기
+	List<FileUploadVO> uploadFileData(String filename);
+	
+	// 해당 파일명에 대한 원래 코드 불러오기
+	String selectFileNameOri(String filename);
 
 
 }

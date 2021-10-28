@@ -70,7 +70,7 @@ def match_rule(inputfile, rulefile) -> dict:
 
                     # 탐지 결과 값을 추가한다.
                     match_result.append({'rule_no':rulefile[size]["no"], 'title':rulefile[size]["title"], 'descriptions':rulefile[size]["descriptions"], 'match':match, 'posfirst':number+matching, 'poslast':number+matching+len(match),
-                                         'deobfuscation' : ''})
+                                         'deobfuscation' : '', 'data' : ''})
 
                     number += matching+len(match)
                     
@@ -93,18 +93,18 @@ def deobfuscation(result,rules):
     result_deobfuscation = []
     
 
-    for index in result :
+    for index in range(len(result['result'])) :
         # print(result[index])
         # print(len(result[index]))
         
-        if len(result[index]) != 0:
+        if len(result['result'][index]) != 0:
 
             for rule_index in range(len(rules)) :
-                print(result[index][0]['rule_no'])
-                print(rules[rule_index]['no'])
+                #print(result[index][0]['rule_no'])
+                #print(rules[rule_index]['no'])
                 
             
-                if result[index][0]['rule_no'] == rules[rule_index]['no'] :
+                if result['result'][index]['rule_no'] == rules[rule_index]['no'] :
 
                     # 탐지 rule에서 해제 코드가 담겨있는 모듈 실행하기
                     deob_path = rules[rule_index]['deobfuscation']
@@ -113,12 +113,12 @@ def deobfuscation(result,rules):
                     spec = importlib.util.spec_from_file_location(deob_name, deob_path)
                     mod = importlib.util.module_from_spec(spec)
                     spec.loader.exec_module(mod)
-                    list_deob = mod.b_deobfuscation((result[index][0]['match']))
+                    list_deob = mod.b_deobfuscation((result['result'][index]['match']))
             
             # 탐지 부분 해제 코드 넣기
             #result_deobfuscation.append(list_deob)
-            result[index][0]['deobfuscation'] = list_deob
-            print('최종 result : ', result)
+            result['result'][index]['deobfuscation'] = list_deob
+    print('최종 result : ', result)
     
 
 
@@ -174,8 +174,31 @@ def main():
         # 탐지부분 난독화 해제 진행
         deobfuscation(result, rule)
 
+        # 원본데이터 수정
+        data = []
+        for result_index in range(len(result['result'])):
+            #print(result_index)
+            match = result['result'][result_index]['match']
+            #print(match)
+            change_str = "<span class=\"highlight\" onclick=\"display("+str(result_index)+");\">"+str(match)+"</span>"
+            for source in input_list:
+                if match in source :
+                    source = source.replace(match,change_str)
+                    data.append(source)
+                else :
+                    data.append(source)
+        print(data)
+        data1 = '\n'.join(data);
+        print(data1)
+
+        for result_in in range(len(result['result'])) :
+            result['result'][result_in]['data'] = str(data1)
+        print("final : ", result)
+
         # 최종 result 값 spring에 넘기기
         client_sock.send(json.dumps(result).encode('utf-8'))
+                    
+                
 
         client_sock.close()
     
