@@ -14,18 +14,8 @@
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="./resources/css/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+        
         <style>
-        	.resultData {
-                border: 3px dashed #92AAB0;
-                width: 550px;
-                height: 900px;
-                color: #92AAB0;
-                text-align: center;
-                vertical-align: middle;
-                padding: 10px 0px 10px 10px;
-                font-size:200%;
-                display: table-cell;
-            }
             .highlight{
             	font-weight:bold;
             	color:red;
@@ -42,19 +32,21 @@
         		width: 50%;
         		float: right;
         		box-sizing: border-box;
+        		flex-direction : column;
+        		flex-wrap : wrap;
+        		word-break : break-all;
         	
     		}
-    		textarea {
-    			border: 1px solid #0054FF;
-    			border-radius: 0px;
-    			height: 30px;
-    			width: 300px;
+    		.box {
+    			width: 600px;
+    			height: 500px;
+    			padding: 10;
+    			border: 3px black solid;
     		}
-
-
 
         </style>
 
+        <script type = "text/javascript" src="./resources/js/jquery-3.6.0.min.js"></script>
         <script type = "text/javascript" src="./resources/js/jquery-3.6.0.min.js"></script>
         <script type = "text/javascript">
         	var arr = new Array();
@@ -65,17 +57,33 @@
         	
         	function display(index){
             	alert(index);
-                var addstr = "<div>"+arr[index].deob+"</div>";
-                $('right').after(addstr);
-            }
+            	if(document.getElementById("deob")){
+                	var deob = document.getElementById("deob");
+                	var deobp = deob.parentElement;
+                	deobp.removeChild(deob);
+                }
+                var newDiv = document.createElement("div");
+                var location = document.getElementById("right");
+                newDiv.innerHTML = arr[index].deob;
+                newDiv.setAttribute("class","box");
+                newDiv.setAttribute("id", "deob");
+                newDiv.setAttribute("style","overflow:scroll");
+                location.appendChild(newDiv); 
+        	}
 
-    	
-        	
-	
+        	// 뒤로가기 버튼을 눌렀을 경우
+        	$(document).on("click",".back",function(){
+				location.href="/graduateproject/result1";
+            });
+
+        	// 분석종료 버튼을 눌렀을 경우
+        	$(document).on("click",".home",function(){
+				location.href="/graduateproject/";
+            });
+
     	</script>
 		
     </head>
-   
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
@@ -172,16 +180,35 @@
                 <main>
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Code Decryption</h1>
-                        
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">결과 확인</li>
                         </ol>
-                        <div class="left">
-                        	${data}
+                       	<div class="card mb-4">
+                        	<div class="card-header">
+                        		<div class="left">
+                                	<i class="fas fa-table me-1"></i>
+                                	원본 파일             		
+                            	</div>
+                            	
+                            	<div class="right">
+                                	<i class="fas fa-table me-1"></i>
+                                	탐지 부분 해제
+                        		</div>
+                        	</div>
+                        	<div class="card-body">
+                        		<div class="left">
+                        			<div class="box" style="overflow:scroll">${data}</div>
+                        		</div>
+                        		<div class="right" id="right">
+                        		</div>
+                        	</div>
+                        	<div class="card-footer">
+                        		<button class="back">뒤로가기</button>
+                        		<button class="home">분석 종료</button>
+                        	</div>
+
                         </div>
-                        <div class="right">
-                        	
-                        </div>
+                        
                     </div>
                 </main>
                 
@@ -195,5 +222,4 @@
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="./resources/js/datatables-simple-demo.js"></script>
     </body>
-    
 </html>

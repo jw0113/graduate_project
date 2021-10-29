@@ -25,6 +25,9 @@ public interface IFileUploadMapper {
 	
 	// 해당 파일명에 대한 원래 코드 불러오기
 	String selectFileNameOri(String filename);
+	
+	// fileupload db 데이터 삭제
+	void deleteUploadfile();
 
 
 }

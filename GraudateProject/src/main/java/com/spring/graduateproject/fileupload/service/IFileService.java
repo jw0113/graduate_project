@@ -34,6 +34,9 @@ public interface IFileService {
 	// 해당 파일명에 대한 원본 데이터 가져오기
 	String selectFileNameOri(String filename);
 	
+	// fileupload db 데이터 삭제
+	void deleteUploadfile();
+	
 
 	
 

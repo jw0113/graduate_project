@@ -191,5 +191,11 @@ public class FileService implements IFileService {
 		return mapper.selectFileNameOri(filename);
 	}
 	
+	// fileupload db 데이터 삭제
+	@Override
+	public void deleteUploadfile() {
+		mapper.deleteUploadfile();
+	}
+	
 
 }
