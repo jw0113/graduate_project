@@ -3,4 +3,28 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.spring.graduateproject.file.repository.IFileMapper">
 
+	<!-- DB컬럼명과 VO클래스의 필드명 매핑 작업 -->
+	<resultMap type="com.spring.graduateproject.file.model.FileVO" id="FileMap">
+		<id property="index" column="index"/>
+		<result property="filename" column="filename" />
+		<result property="filetype" column="filetype" />
+		<result property="filesize" column="filesize" />
+		<result property="deob" column="deob" />
+		<result property="deobcount" column="deobcount" />
+	</resultMap>
+
+	<!-- file db 전체 내용 불러오기 -->
+	<select id="selectAll" resultMap="FileMap">
+		SELECT *
+		FROM file
+	</select>
+	
+	<!-- index 해당 데이터 불러오기 -->
+	<select id="selectOne" resultMap="FileMap">
+		SELECT *
+		FROM file
+		WHERE `index`= #{index}
+	</select>
+	
+
 </mapper>

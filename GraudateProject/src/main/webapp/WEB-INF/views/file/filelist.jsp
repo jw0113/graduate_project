@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -12,220 +13,8 @@
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="./resources/css/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
-        <style>
-        	.dragAndDropDiv {
-                border: 2px dashed #92AAB0;
-                width: 650px;
-                height: 200px;
-                color: #92AAB0;
-                text-align: center;
-                vertical-align: middle;
-                padding: 10px 0px 10px 10px;
-                font-size:200%;
-                display: table-cell;
-            }
-            .progressBar {
-                width: 200px;
-                height: 22px;
-                border: 1px solid #ddd;
-                border-radius: 5px; 
-                overflow: hidden;
-                display:inline-block;
-                margin:0px 10px 5px 5px;
-                vertical-align:top;
-            }
-             
-            .progressBar div {
-                height: 100%;
-                color: #fff;
-                text-align: right;
-                line-height: 22px; /* same as #progressBar height if we want text middle aligned */
-                width: 0;
-                background-color: #0ba1b5; border-radius: 3px; 
-            }
-            .statusbar{
-                border-top:1px solid #A9CCD1;
-                min-height:25px;
-                width:99%;
-                padding:10px 10px 0px 10px;
-                vertical-align:top;
-            }
-            .statusbar:nth-child(odd){
-                background:#EBEFF0;
-            }
-            .filename{
-                display:inline-block;
-                vertical-align:top;
-                width:250px;
-            }
-            .filesize{
-                display:inline-block;
-                vertical-align:top;
-                color:#30693D;
-                width:100px;
-                margin-left:10px;
-                margin-right:5px;
-            }
-            .abort{
-                background-color:#A8352F;
-                -moz-border-radius:4px;
-                -webkit-border-radius:4px;
-                border-radius:4px;display:inline-block;
-                color:#fff;
-                font-family:arial;font-size:13px;font-weight:normal;
-                padding:4px 15px;
-                cursor:pointer;
-                vertical-align:top
-            }
-            .submit{
-                background-color:#A8352F;
-                -moz-border-radius:4px;
-                -webkit-border-radius:4px;
-                border-radius:4px;display:inline-block;
-                color:#fff;
-                font-family:arial;font-size:13px;font-weight:normal;
-                padding:4px 15px;
-                cursor:pointer;
-                vertical-align:top
-            }
-        </style>
+
         <script type = "text/javascript" src="./resources/js/jquery-3.6.0.min.js"></script>
-        <script type = "text/javascript">
-			$(document).ready(function(){
-				$(document).on("gragenter", ".dragAndDropDiv", function(e){
-					e.stopPropagation();
-					e.preventDefault();
-					$(this).css('border', '2px solid #0B85A1');
-				});
-				$(document).on("dragover",".dragAndDropDiv", function(e){
-					e.stopPropagation();
-					e.preventDefault();
-				});
-				// 파일을 drop 했을 경우
-				$(document).on("drop",".dragAndDropDiv", function(e){
-					e.preventDefault();
-					$(this).css("border",'2px solid #0B85A1');
-
-					var files = e.originalEvent.dataTransfer.files;
-					fileUpload(files,$(".dragAndDropDiv"));
-				});
-				function fileUpload(files,obj){
-					
-					for (var i=0; i<files.length; i++){
-						var formData = new FormData();
-						formData.append("file", files[i])
-						console.log(files[i])
-						
-						// 파일 업로드시 
-						var status = new createStatusBar(obj)
-						status.setFile(files[i].name, files[i].size);
-						sendFile(files.length,formData,status);
-					}
-					
-				}
-				var rowCount = 0;
-				// 파일 drop시 파일 업로드 상태 표시
-				function createStatusBar(obj){
-					rowCount++;
-					var row = "odd";
-					if(rowCount %2 == 0) row = "even";
-					this.statusbar = $("<div class='statusbar "+row+"'></div>");
-					this.filename = $("<div class='filename'></div>").appendTo(this.statusbar);
-					this.filesize = $("<div class='filesize'></div>").appendTo(this.statusbar);
-					this.progressBar = $("<div class='progressBar'><div></div></div>").appendTo(this.statusbar);
-					this.abort = $("<div class='abort'>중지</div>").appendTo(this.statusbar);
-
-					// 파일 업로드 창에 statusbar 부분를 추가한다.
-					obj.after(this.statusbar);
-
-					// 파일 이름과 크기 나타내기
-					this.setFile = function(name, size){
-						var f_size = "";
-						var f_sizekb = size/1024;
-						if(parseInt(f_sizekb) > 1024){
-							var f_sizemb = f_sizekb / 1024;
-							f_size = f_sizemb.toFixed(2) + "MB";
-						}
-						else{
-							f_size = f_sizekb.toFixed(2) + "KB";
-						}
-
-						this.filename.html(name);
-						this.filesize.html(f_size);
-
-					}
-					this.setProgress = function(progress){
-
-						var progressWidth = progress * this.progressBar.width() / 100;
-						this.progressBar.find("div").animate({width : progressWidth},1000).html(progress + "%");
-						if (parseInt(progress) >= 100){ 
-							this.abort.hide();
-						}
-					}
-					// 중지 버튼을 눌렀을 경우 이벤트 처리
-					this.setAbort = function(f_ajax){
-						this.abort.click(function(){
-							f_ajax.abort();
-							this.statusbar.hide();
-						})
-
-					}
-				}
-				var rearray = new Array();
-				var reindex = 0;
-				function sendFile(filesize, formData, status){
-					var f_ajax = $.ajax({
-						// xhr 객체를 이용하여 서버와의 데이터 전달 진행상황을 확인
-						xhr: function(){
-							var upload_xhr = $.ajaxSettings.xhr();
-							if(upload_xhr.upload){
-								upload_xhr.upload.addEventListener("progress", function(e){
-									var percent = 0;
-									var position = e.loaded || e.position;
-									var total = e.total;
-									// 전송 중이라면 전송된 바이트들을 계산하여 percent 생성
-									if (e.lengthComputable){ 
-										percent = Math.ceil((e.loaded / e.total * 100) - 10);
-										
-									}
-									else{
-										console.log("error");
-									}
-									status.setProgress(percent);
-								}, false);
-							}
-							return upload_xhr;
-						},
-						type : "POST",
-						url : "/graduateproject/upload",
-						data : formData,
-						dataType : "text",
-						processData : false,
-						contentType : false,
-						async: false,
-						success : function(data){
-							if(data == "fail"){
-								console.log("fail : ", data);
-								alert("서버를 다시 시도해주세요!");
-							}
-							else{
-								console.log("success : ", data);
-								status.setProgress(100);
-								reindex++;
-								if(reindex == filesize) nextPage();
-								
-							}
-						},
-					});
-					status.setAbort(f_ajax);
-				}
-				// 다음 페이지로 이동
-				function nextPage(){
-					location.href="/graduateproject/result1";
-				}
-			});
-		</script>
-		
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -261,7 +50,7 @@
                             <div class="sb-sidenav-menu-heading">Core</div>
                             <a class="nav-link" href="index.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Code Decryption
+                                Dashboard
                             </a>
                             <div class="sb-sidenav-menu-heading">Interface</div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
@@ -311,23 +100,65 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Charts
                             </a>
-                            <a class="nav-link" href="/graduateproject/filelist">
+                            <a class="nav-link" href="tables.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Files
+                                Tables
                             </a>
                         </div>
+                    </div>
+                    <div class="sb-sidenav-footer">
+                        <div class="small">Logged in as:</div>
+                        Start Bootstrap
                     </div>
                 </nav>
             </div>
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Code Decryption</h1>
+                        <h1 class="mt-4">Files Collection</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">파일을 업로드 하세요</li>
+                            <li class="breadcrumb-item active">악성코드 파일 모음</li>
                         </ol>
-                        <div id="fileUpload" class="dragAndDropDiv">Drag & Drop Files Here</div>
                         
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                Files
+                            </div>
+                            <div class="card-body">
+                                <table id="datatablesSimple">
+                                    <thead>
+                                        <tr>
+                                        	<th>Index</th>
+                                            <th>Filename</th>
+                                            <th>Filetype</th>
+                                            <th>Filesize</th>
+                                            <th>Analysis</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Index</th>
+                                            <th>Filename</th>
+                                            <th>Filetype</th>
+                                            <th>Filesize</th>
+                                            <th>Analysis</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                    	<c:forEach var="f" items="${dbdata}">
+                                        	<tr onClick="location.href='/graduateproject/filedetail?index=${f.index}'">
+                                            	<td>${f.index}</td>
+                                            	<td>${f.filename}</td>
+                                            	<td>${f.filetype}</td>
+                                            	<td>${f.filesize}</td>
+                                            	<td>${f.deob}</td>
+                                        	</tr>
+                                        </c:forEach>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </main>
                 
@@ -335,9 +166,6 @@
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="./resources/js/scripts.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="./resources/assets/demo/chart-area-demo.js"></script>
-        <script src="./resources/assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="./resources/js/datatables-simple-demo.js"></script>
     </body>

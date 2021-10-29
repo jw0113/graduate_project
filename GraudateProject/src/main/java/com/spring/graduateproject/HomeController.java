@@ -117,6 +117,4 @@ public class HomeController {
 		return "result2";
 	}
 	
-	
-	
 }
