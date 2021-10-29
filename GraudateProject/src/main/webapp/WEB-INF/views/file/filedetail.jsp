@@ -13,8 +13,25 @@
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="./resources/css/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
-
+        <style>
+        	div.box{
+        		height: 50px;
+        		width: 100%;
+        		padding-top: 30px; 
+        	}
+        </style>
         <script type = "text/javascript" src="./resources/js/jquery-3.6.0.min.js"></script>
+        <script>
+     		// 뒤로가기 버튼을 눌렀을 경우
+    		$(document).on("click",".back",function(){
+				location.href="/graduateproject/filelist";
+        	});
+
+    		// home 버튼을 눌렀을 경우
+    		$(document).on("click",".home",function(){
+				location.href="/graduateproject/";
+        	});
+        </script>
 
     </head>
     <body class="sb-nav-fixed">
@@ -120,15 +137,18 @@
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">악성 파일 자세히 살펴보기</li>
                         </ol>
-                        <c:forEach var="f" items="${dbdetail}">
+                        
                         <div class="row">
                         	<div class="col-lg-6">
                                 <div class="card mb-4">
+                                	<div class="card-header">File Detail</div>
                             		<div class="card-body">
-                                		Filename : " ${f.filename} "<br>
-                                		Filetype : " ${f.filetype} "<br>
-                                		Filesize : " ${f.filesize} "<br>
-                                		Analysis : " ${f.deob} "
+                            			<div>
+                                		Filename   ${filedetail.filename} <br>
+                                		Filetype :  ${filedetail.filetype} <br>
+                                		Filesize :  ${filedetail.filesize} <br>
+                                		Analysis :  ${filedetail.deob} 
+                                		</div>
                             		</div>
                         		</div>
                             </div>
@@ -139,10 +159,14 @@
                                         Dangerous
                                     </div>
                                     <div class="card-body"><canvas id="myPieChart" width="100%" height="50"></canvas></div>
+                                    <div class="card-footer">
+                                    	<button class="back">뒤로가기</button>
+                        				<button class="home">HOME</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        </c:forEach>
+                        
                     </div>
                 </main>
             </div>
@@ -150,21 +174,23 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="./resources/js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="./resources/assets/demo/chart-pie-demo.js"></script>
+
         <script>
         	var ctx = document.getElementById("myPieChart");
-        	
+        	var aa = ${filedetail.deobcount};
+        	var math = 100-aa
 
         	var myPieChart = new Chart(ctx, {
           		type: 'pie',
           		data: {
-            		labels: ["Blue", "Red"],
+            		labels: [math+"%", aa+"%"],
             		datasets: [{
-              			data: [12.21, 15.58, 11.25, 8.32],
+              			data: [math, aa],
               			backgroundColor: ['#007bff', '#dc3545'],
             		}],
           		},
         	});
         </script>
+        
     </body>
 </html>

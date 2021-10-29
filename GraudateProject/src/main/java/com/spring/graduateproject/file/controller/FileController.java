@@ -39,5 +39,8 @@ public class FileController {
 		
 		return "file/filedetail";
 	}
+	
+	// base64 요청 처리
+	
 
 }
