@@ -144,7 +144,7 @@
                                 	<div class="card-header">File Detail</div>
                             		<div class="card-body">
                             			<div>
-                                		Filename   ${filedetail.filename} <br>
+                                		Filename : ${filedetail.filename} <br>
                                 		Filetype :  ${filedetail.filetype} <br>
                                 		Filesize :  ${filedetail.filesize} <br>
                                 		Analysis :  ${filedetail.deob} 

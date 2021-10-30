@@ -11,5 +11,8 @@ public interface IFilesService {
 	
 	// 인덱스에 해당하는 파일 상세보기
 	FileVO selectOne(int index);
+	
+	// encode 할 수 있는 문자열인지 확인
+	String encodeCheck(String inputstr);
 
 }

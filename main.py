@@ -119,7 +119,11 @@ def deobfuscation(result,rules):
             #result_deobfuscation.append(list_deob)
             result['result'][index]['deobfuscation'] = list_deob
     print('최종 result : ', result)
-    
+
+# Encode check
+def checkEncode(client_sock) :
+    str = client_sock.recv(4000).decode('utf-8')
+    print(str)
 
 
 
@@ -154,49 +158,53 @@ def main():
         print("Connected by", addr)
 
         filesize = client_sock.recv(1024)
-        print("받아온 파일 : ", filesize)
+        print("받아온 파일 : ", type(filesize))
         num = 1
         client_sock.send(num.to_bytes(4,byteorder='little'))
 
-        # 데이터 크기만큼의 데이터 내용도 받아옴
-        inputfile_list = inputfiles(client_sock, filesize)
-        # print(type(inputfile_list))
-        input_list = inputfile_list.split('\n')
-        # print(input_list,type(input_list))
+        if filesize.decode('utf-8') == '0' :
+            checkEncode(client_sock)
+        else :
 
-        # json형식으로 저장한 Rules 가져오기
-        rule = load_rules("./rules/rules.json")
+            # 데이터 크기만큼의 데이터 내용도 받아옴
+            inputfile_list = inputfiles(client_sock, filesize)
+            # print(type(inputfile_list))
+            input_list = inputfile_list.split('\n')
+            # print(input_list,type(input_list))
 
-        # 읽어온 파일과 rule파일을 이용해 탐지하기
-        result = match_rule(input_list, rule)
-        print("result : ", result)
+            # json형식으로 저장한 Rules 가져오기
+            rule = load_rules("./rules/rules.json")
 
-        # 탐지부분 난독화 해제 진행
-        deobfuscation(result, rule)
+            # 읽어온 파일과 rule파일을 이용해 탐지하기
+            result = match_rule(input_list, rule)
+            print("result : ", result)
 
-        # 원본데이터 수정
-        data = []
-        for result_index in range(len(result['result'])):
-            #print(result_index)
-            match = result['result'][result_index]['match']
-            #print(match)
-            change_str = "<span class=\"highlight\" onclick=\"display("+str(result_index)+");\">"+str(match)+"</span>"
-            for source in input_list:
-                if match in source :
-                    source = source.replace(match,change_str)
-                    data.append(source)
-                else :
-                    data.append(source)
-        print(data)
-        data1 = '\n'.join(data);
-        print(data1)
+            # 탐지부분 난독화 해제 진행
+            deobfuscation(result, rule)
 
-        for result_in in range(len(result['result'])) :
-            result['result'][result_in]['data'] = str(data1)
-        print("final : ", result)
+            # 원본데이터 수정
+            data = []
+            for result_index in range(len(result['result'])):
+                #print(result_index)
+                match = result['result'][result_index]['match']
+                #print(match)
+                change_str = "<span class=\"highlight\" onclick=\"display("+str(result_index)+");\">"+str(match)+"</span>"
+                for source in input_list:
+                    if match in source :
+                        source = source.replace(match,change_str)
+                        data.append(source)
+                    else :
+                        data.append(source)
+            print(data)
+            data1 = '\n'.join(data);
+            print(data1)
 
-        # 최종 result 값 spring에 넘기기
-        client_sock.send(json.dumps(result).encode('utf-8'))
+            for result_in in range(len(result['result'])) :
+                result['result'][result_in]['data'] = str(data1)
+            print("final : ", result)
+
+            # 최종 result 값 spring에 넘기기
+            client_sock.send(json.dumps(result).encode('utf-8'))
                     
                 
 

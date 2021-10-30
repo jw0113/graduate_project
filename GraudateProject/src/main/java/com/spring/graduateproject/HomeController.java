@@ -65,10 +65,10 @@ public class HomeController {
 					vo.setFilename(f.getOriginalFilename());
 
 					// 기존 파일 db저장
-					//ifileservice.uploadOriginalfile(f.getOriginalFilename(),data);
+					ifileservice.uploadOriginalfile(f.getOriginalFilename(),data);
 					
 					// 탐지&해제 데이터 db저장 - vo같이 넘기자
-					//ifileservice.uploadResultfile(vo, re);	
+					ifileservice.uploadResultfile(vo, re);	
 					
 				} catch (IOException e) {
 					// TODO Auto-generated catch block

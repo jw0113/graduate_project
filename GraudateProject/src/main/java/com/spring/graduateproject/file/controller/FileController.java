@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.graduateproject.file.model.FileVO;
 import com.spring.graduateproject.file.service.IFilesService;
@@ -18,7 +19,7 @@ public class FileController {
 	private IFilesService ifilesservice;
 	private FileVO vo = new FileVO();
 	
-	//기본 메인 화면
+	// filelist 요청 처리
 	@RequestMapping(value = "/filelist", method = RequestMethod.GET)
 	public String filelist(Model model) {
 		
@@ -41,6 +42,20 @@ public class FileController {
 	}
 	
 	// base64 요청 처리
+	@RequestMapping(value="/base64", method = RequestMethod.GET)
+	public String base64() {
+		return "base64/inputbase64";
+	}
+	
+	// encode 요청 처리
+	@RequestMapping(value="/encode", method = RequestMethod.POST)
+	public String encode( String inputbase64, RedirectAttributes re) {
+		
+		// encode 진행
+		String check = ifilesservice.encodeCheck(inputbase64);
+		
+		return "";
+	}
 	
 
 }
