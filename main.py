@@ -121,9 +121,15 @@ def deobfuscation(result,rules):
     print('최종 result : ', result)
 
 # Encode check
-def checkEncode(client_sock) :
+def checkEncode(client_sock,r) :
     str = client_sock.recv(4000).decode('utf-8')
     print(str)
+
+    # rule 중에서 base64부분의 패턴만 가져온다.
+    pattern = r[0]["regexp"]
+    regexp = re.compile(pattern)
+    match_en = re.findall(regexp, str)
+    print("encode : ", len(match_en)) # encdoe : [] 결과 발생
 
 
 
@@ -163,7 +169,8 @@ def main():
         client_sock.send(num.to_bytes(4,byteorder='little'))
 
         if filesize.decode('utf-8') == '0' :
-            checkEncode(client_sock)
+            r = load_rules("./rules/rules.json")
+            checkEncode(client_sock, r)
         else :
 
             # 데이터 크기만큼의 데이터 내용도 받아옴

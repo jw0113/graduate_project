@@ -55,22 +55,31 @@ public class FilesService implements IFilesService {
 			bufferout.write(Integer.toString(0).getBytes());
 			bufferout.flush();
 			
-//			while(true) {
-//				if (bufferin.read() == 1) {
-//					
-//					
-//				}
-//				
-//				if (bufferin.read() > 0) {
-//					
-//				}
-//				
-//				if (bufferin.read() < 0) {
-//					
-//				}
-//			}
+			String encode_result = "";
+			while(true) {
+				if (bufferin.read() == 1) {
+					bufferout.write(inputstr.getBytes());
+					bufferout.flush();
+					
+				}
+				
+				if (bufferin.read() > 0) {
+					byte[] in = new byte[3000];
+					encode_result += new String(in,0,bufferin.read(in));
+					
+				}
+				
+				if (bufferin.read() < 0) {
+					break;
+				}
+			}
 			
-			return " ";
+			bufferout.close();
+			bufferin.close();
+			socket.close();
+			
+			return encode_result;
+			
 			
 		} catch (Exception e) {
 			System.out.println("Connect Fail");
