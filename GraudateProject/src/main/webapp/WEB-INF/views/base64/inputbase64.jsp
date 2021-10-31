@@ -141,6 +141,7 @@
                                 	<div class="card-header">Base64 Ãâ·Â</div>
                             		<div class="card-body">
                             			${encode_result}
+                            			${decode_result}
                             		</div>
                         		</div>
                             </div>
