@@ -52,9 +52,21 @@ public class FileController {
 	public String encode( String inputbase64, RedirectAttributes re) {
 		
 		// encode 진행
-		String check = ifilesservice.encodeCheck(inputbase64);
+		String encode_check = ifilesservice.encodeCheck(inputbase64);
+		re.addFlashAttribute("encode_result", encode_check);
 		
-		return "";
+		return "redirect:/base64/inputbase64";
+	}
+	
+	// decode 요청 처리
+	@RequestMapping(value="/decode", method = RequestMethod.POST)
+	public String decode(String inputbase64, RedirectAttributes re) {
+		
+		// decode 진행
+		String decode_check = ifilesservice.decodeCheck(inputbase64);
+		re.addFlashAttribute("decode_result", decode_check);
+		
+		return "redirect:/base64/inputbase64";
 	}
 	
 

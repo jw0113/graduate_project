@@ -89,4 +89,63 @@ public class FilesService implements IFilesService {
 
 	}
 	
+	// decode 할 수 있는 문자열인지 확인
+	@Override
+	public String decodeCheck(String inputstr) {
+		Socket socket;
+		String ip = "127.0.0.1";
+		int port = 5000;
+
+		OutputStream outputstream;
+		InputStream inputstream;
+		BufferedOutputStream bufferout;
+		BufferedInputStream bufferin;
+
+		try {
+			socket = new Socket(ip,port);
+			System.out.println("Connect Success");
+
+			outputstream = socket.getOutputStream();
+			inputstream = socket.getInputStream();
+			bufferout = new BufferedOutputStream(outputstream);
+			bufferin = new BufferedInputStream(inputstream);
+
+			bufferout.write(Integer.toString(1).getBytes());
+			bufferout.flush();
+
+			String encode_result = "";
+			while(true) {
+				if (bufferin.read() == 1) {
+					bufferout.write(inputstr.getBytes());
+					bufferout.flush();
+
+				}
+
+				if (bufferin.read() > 0) {
+					byte[] in = new byte[3000];
+					encode_result += new String(in,0,bufferin.read(in));
+
+				}
+
+				if (bufferin.read() < 0) {
+					break;
+				}
+			}
+
+			bufferout.close();
+			bufferin.close();
+			socket.close();
+
+			return encode_result;
+
+
+		} catch (Exception e) {
+			System.out.println("Connect Fail");
+			e.printStackTrace();
+			return "fail";
+		}
+
+	}
+	
+	
 }

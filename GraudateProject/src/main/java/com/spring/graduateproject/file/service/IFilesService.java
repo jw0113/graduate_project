@@ -14,5 +14,8 @@ public interface IFilesService {
 	
 	// encode 할 수 있는 문자열인지 확인
 	String encodeCheck(String inputstr);
+	
+	// decode 할 수 있는 문자열인지 확인
+	String decodeCheck(String inputstr);
 
 }
