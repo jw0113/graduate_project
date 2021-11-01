@@ -22,5 +22,23 @@
         "title" : "EqualSign",
         "descriptions" : "URL에 '=' 있는지 확인",
         "code_location" : "C:\\Users\\jiwoo\\Git\\graduateProject\\URL_Based_Code\\equalsign.py"
+    },
+    {
+        "no" : 5,
+        "title" : "Hypen",
+        "descriptions" : "URL에 '-' 있는지 확인",
+        "code_location" : "C:\\Users\\jiwoo\\Git\\graduateProject\\URL_Based_Code\\hypen.py"
+    },
+    {
+        "no" : 6,
+        "title" : "SemiColon",
+        "descriptions" : "URL에 ';' 있는지 확인",
+        "code_location" : "C:\\Users\\jiwoo\\Git\\graduateProject\\URL_Based_Code\\semicolon.py"
+    },
+    {
+        "no" : 7,
+        "title" : "ContainDigits",
+        "descriptions" : "URL에 숫자가 있는지 확인",
+        "code_location" : "C:\\Users\\jiwoo\\Git\\graduateProject\\URL_Based_Code\\containdigits.py"
     }
 ]
