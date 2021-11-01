@@ -1,0 +1,14 @@
+[
+    {
+        "no" : 1,
+        "title" : "upperAuthority",
+        "descriptions" : "상위 권한 탈취 가능성 URL",
+        "code_location" : "C:\\Users\\jiwoo\\Git\\graduateProject\\Deobfuscation_Code\\base64_deobfuscation.py"
+    },
+    {
+        "no" : 2,
+        "title" : "smishingURL",
+        "descriptions" : "상위 권한 탈취 가능성 URL",
+        "code_location" : "C:\\Users\\jiwoo\\Git\\graduateProject\\Deobfuscation_Code\\base64_deobfuscation.py"
+    }
+]

@@ -1,0 +1,14 @@
+[
+    {
+        "no" : 1,
+        "title" : "AtMark",
+        "descriptions" : "URL에 '@' 있는지 확인",
+        "code_location" : "C:\\Users\\jiwoo\\Git\\graduateProject\\URL_Based_Code\\atmark.py"
+    },
+    {
+        "no" : 2,
+        "title" : "BackSlash",
+        "descriptions" : "URL에 '\\' 있는지 확인",
+        "code_location" : "C:\\Users\\jiwoo\\Git\\graduateProject\\URL_Based_Code\\backslash.py"
+    }
+]
