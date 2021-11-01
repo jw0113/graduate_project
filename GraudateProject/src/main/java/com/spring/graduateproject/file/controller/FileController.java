@@ -55,7 +55,7 @@ public class FileController {
 		String encode_check = ifilesservice.encodeCheck(inputbase64);
 		re.addFlashAttribute("encode_result", encode_check);
 		
-		return "redirect:/base64/inputbase64";
+		return "redirect:/base64";
 	}
 	
 	// decode 요청 처리
@@ -66,7 +66,7 @@ public class FileController {
 		String decode_check = ifilesservice.decodeCheck(inputbase64);
 		re.addFlashAttribute("decode_result", decode_check);
 		
-		return "redirect:/base64/inputbase64";
+		return "redirect:/base64";
 	}
 	
 

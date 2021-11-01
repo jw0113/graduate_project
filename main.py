@@ -136,14 +136,14 @@ def checkEncode(client_sock) :
     encode_path = "C:\\Users\\jiwoo\\Git\\graduateProject\\Deobfuscation_Code\\base64_encode.py"
     encode_name = os.path.basename(encode_path)
 
-    spec = importlib.util.spec_from_file_location(encode_name)
+    spec = importlib.util.spec_from_file_location(encode_name, encode_path)
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     list_encode = mod.base64_encode(str)
     return list_encode
 
 # Decode check
-def checkDecode(Client_sock) :
+def checkDecode(client_sock) :
 
     str = client_sock.recv(4000).decode('utf-8')
     print(str)
@@ -159,7 +159,7 @@ def checkDecode(Client_sock) :
     decode_path = "C:\\Users\\jiwoo\\Git\\graduateProject\\Deobfuscation_Code\\base64_decode.py"
     decode_name = os.path.basename(decode_path)
 
-    spec = importlib.util.spec_from_file_location(decode_name)
+    spec = importlib.util.spec_from_file_location(decode_name, decode_path)
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     list_decode = mod.base64_decode(str)
@@ -205,11 +205,13 @@ def main():
         if filesize.decode('utf-8') == '0' :
             #r = load_rules("./rules/rules.json")
             encode_result = checkEncode(client_sock)
-            client_sock.send(encode_result)
+            #print("encode_result : ", encode_result)
+            client_sock.send(encode_result.encode('utf-8'))
 
         elif filesize.decode('utf-8') == '1':
             decode_result = checkDecode(client_sock)
-            client_sock.send(decode_result)
+            print(decode_result)
+            client_sock.send(decode_result.encode())
             
         else :
 

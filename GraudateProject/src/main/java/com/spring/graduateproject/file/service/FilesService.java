@@ -56,23 +56,26 @@ public class FilesService implements IFilesService {
 			bufferout.flush();
 			
 			String encode_result = "";
+			byte[] in = new byte[9999];
+			int a;
 			while(true) {
-				if (bufferin.read() == 1) {
+				a = bufferin.read(in);
+				if (a == 4) {
 					bufferout.write(inputstr.getBytes());
 					bufferout.flush();
 					
 				}
 				
-				if (bufferin.read() > 0) {
-					byte[] in = new byte[3000];
-					encode_result += new String(in,0,bufferin.read(in));
-					
+				else if (a > 0) {
+					//byte[] in = new byte[9999];
+					encode_result += new String(in,0,a);
 				}
 				
-				if (bufferin.read() < 0) {
+				else if (a < 0) {
 					break;
 				}
 			}
+			System.out.println("encode_result : " + encode_result);
 			
 			bufferout.close();
 			bufferin.close();
@@ -113,30 +116,33 @@ public class FilesService implements IFilesService {
 			bufferout.write(Integer.toString(1).getBytes());
 			bufferout.flush();
 
-			String encode_result = "";
+			String decode_result = "";
+			byte[] in = new byte[9999];
+			int a;
 			while(true) {
-				if (bufferin.read() == 1) {
+				a = bufferin.read(in);
+				if (a == 4) {
 					bufferout.write(inputstr.getBytes());
 					bufferout.flush();
 
 				}
 
-				if (bufferin.read() > 0) {
-					byte[] in = new byte[3000];
-					encode_result += new String(in,0,bufferin.read(in));
+				else if (a > 0) {
+					
+					decode_result += new String(in,0,a);
 
 				}
 
-				if (bufferin.read() < 0) {
+				else if (a < 0) {
 					break;
 				}
 			}
-
+			System.out.println(decode_result);
 			bufferout.close();
 			bufferin.close();
 			socket.close();
 
-			return encode_result;
+			return decode_result;
 
 
 		} catch (Exception e) {
