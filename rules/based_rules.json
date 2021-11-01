@@ -40,5 +40,47 @@
         "title" : "ContainDigits",
         "descriptions" : "URL에 숫자가 있는지 확인",
         "code_location" : "C:\\Users\\jiwoo\\Git\\graduateProject\\URL_Based_Code\\containdigits.py"
+    },
+    {
+        "no" : 8,
+        "title" : "ContainDigits",
+        "descriptions" : "URL에 숫자가 있는지 확인",
+        "code_location" : "C:\\Users\\jiwoo\\Git\\graduateProject\\URL_Based_Code\\containdigits.py"
+    },
+    {
+        "no" : 9,
+        "title" : "LenghOfURL",
+        "descriptions" : "URL의 총 길이가 65 이상인지 파악",
+        "code_location" : "C:\\Users\\jiwoo\\Git\\graduateProject\\URL_Based_Code\\lenghofurl.py"
+    },
+    {
+        "no" : 10,
+        "title" : "ATag",
+        "descriptions" : "URL의 html에서 <a>태그가 존재하는지 파악",
+        "code_location" : "C:\\Users\\jiwoo\\Git\\graduateProject\\URL_Based_Code\\atag.py"
+    },
+    {
+        "no" : 11,
+        "title" : "HiddenTag",
+        "descriptions" : "URL의 html에서 <hidden>태그가 존재하는지 파악",
+        "code_location" : "C:\\Users\\jiwoo\\Git\\graduateProject\\URL_Based_Code\\hiddentag.py"
+    },
+    {
+        "no" : 12,
+        "title" : "IframeTag",
+        "descriptions" : "URL의 html에서 <iframe>태그가 존재하는지 파악",
+        "code_location" : "C:\\Users\\jiwoo\\Git\\graduateProject\\URL_Based_Code\\iframetag.py"
+    },
+    {
+        "no" : 13,
+        "title" : "UnEqualHtml",
+        "descriptions" : "URL의 html에서 </html>태그가 존재하지 않는 경우 파악",
+        "code_location" : "C:\\Users\\jiwoo\\Git\\graduateProject\\URL_Based_Code\\unequalhtml.py"
+    },
+    {
+        "no" : 14,
+        "title" : "WindowOpenMethod",
+        "descriptions" : "URL의 html에서 window.open() 있는지 파악",
+        "code_location" : "C:\\Users\\jiwoo\\Git\\graduateProject\\URL_Based_Code\\windowopenmethod.py"
     }
 ]
