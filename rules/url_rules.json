@@ -7,8 +7,8 @@
     },
     {
         "no" : 2,
-        "title" : "smishingURL",
-        "descriptions" : "상위 권한 탈취 가능성 URL",
-        "code_location" : "C:\\Users\\jiwoo\\Git\\graduateProject\\URL_Deob\\smishingurl.py"
+        "title" : "linkPossibility",
+        "descriptions" : "피싱 사이트로 유도할 수 있는 가능성 URL - iframe 태그를 만들어 클릭하면 <a>태그가 실행되어 피싱사이트로 이동할 수 있다.",
+        "code_location" : "C:\\Users\\jiwoo\\Git\\graduateProject\\URL_Deob\\linkpossibility.py"
     }
 ]
