@@ -56,13 +56,19 @@
     {
         "no" : 10,
         "title" : "javaExe - FromCharCodeMethod",
-        "descriptions" : "취약한 java함수 탐지3 - fromCharCode()",
+        "descriptions" : "취약한 java함수 탐지4 - fromCharCode()",
         "code_location" : "C:\\Users\\jiwoo\\Git\\graduateProject\\URL_Deob\\javafromcharcodeexe.py"
     },
     {
         "no" : 11,
         "title" : "javaExe - escapeMethod",
-        "descriptions" : "취약한 java함수 탐지3 - escape()",
+        "descriptions" : "취약한 java함수 탐지5 - escape()",
         "code_location" : "C:\\Users\\jiwoo\\Git\\graduateProject\\URL_Deob\\javaescapeexe.py"
+    },
+    {
+        "no" : 12,
+        "title" : "SpecialCharacter",
+        "descriptions" : "URL에 특수문자가 존재하는지 파악",
+        "code_location" : "C:\\Users\\jiwoo\\Git\\graduateProject\\URL_Deob\\specialcharacter.py"
     }
 ]
