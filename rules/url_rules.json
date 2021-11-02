@@ -10,5 +10,59 @@
         "title" : "linkPossibility",
         "descriptions" : "피싱 사이트로 유도할 수 있는 가능성 URL - iframe 태그를 만들어 클릭하면 <a>태그가 실행되어 피싱사이트로 이동할 수 있다.",
         "code_location" : "C:\\Users\\jiwoo\\Git\\graduateProject\\URL_Deob\\linkpossibility.py"
+    },
+    {
+        "no" : 3,
+        "title" : "hiddenTagExist",
+        "descriptions" : "의심 가능한 태그가 존재하는지 여부 파악1 - hidden tag",
+        "code_location" : "C:\\Users\\jiwoo\\Git\\graduateProject\\URL_Deob\\hiddentagexist.py"
+    },
+    {
+        "no" : 4,
+        "title" : "IframeTagExist",
+        "descriptions" : "의심 가능한 태그가 존재하는지 여부 파악2 - iframe tag",
+        "code_location" : "C:\\Users\\jiwoo\\Git\\graduateProject\\URL_Deob\\iframetagexist.py"
+    },
+    {
+        "no" : 5,
+        "title" : "unEqualHtmlTagExist",
+        "descriptions" : "의심 가능한 태그가 존재하는지 여부 파악3 - unEqualHtml tag",
+        "code_location" : "C:\\Users\\jiwoo\\Git\\graduateProject\\URL_Deob\\unequalhtmltagexist.py"
+    },
+    {
+        "no" : 6,
+        "title" : "IPUrl",
+        "descriptions" : "URL에 IP주소가 존재하는 경우 탐지",
+        "code_location" : "C:\\Users\\jiwoo\\Git\\graduateProject\\URL_Deob\\ipurl.py"
+    },
+    {
+        "no" : 7,
+        "title" : "javaExe - evalMethod",
+        "descriptions" : "취약한 java함수 탐지1 - eval()",
+        "code_location" : "C:\\Users\\jiwoo\\Git\\graduateProject\\URL_Deob\\javaevalexe.py"
+    },
+    {
+        "no" : 8,
+        "title" : "javaExe - windowOpenMethod",
+        "descriptions" : "취약한 java함수 탐지2 - window.open()",
+        "code_location" : "C:\\Users\\jiwoo\\Git\\graduateProject\\URL_Deob\\javawindowopenexe.py"
+    },
+    {
+        "no" : 9,
+        "title" : "javaExe - charCodeAtMethod",
+        "descriptions" : "취약한 java함수 탐지3 - charCodeAt()",
+        "code_location" : "C:\\Users\\jiwoo\\Git\\graduateProject\\URL_Deob\\javacharcodeatexe.py"
+    },
+    {
+        "no" : 10,
+        "title" : "javaExe - FromCharCodeMethod",
+        "descriptions" : "취약한 java함수 탐지3 - fromCharCode()",
+        "code_location" : "C:\\Users\\jiwoo\\Git\\graduateProject\\URL_Deob\\javafromcharcodeexe.py"
+    },
+    {
+        "no" : 11,
+        "title" : "javaExe - escapeMethod",
+        "descriptions" : "취약한 java함수 탐지3 - escape()",
+        "code_location" : "C:\\Users\\jiwoo\\Git\\graduateProject\\URL_Deob\\javaescapeexe.py"
     }
 ]
