@@ -2,13 +2,13 @@
     {
         "no" : 1,
         "title" : "upperAuthority",
-        "descriptions" : "상위 권한 탈취 가능성 URL",
-        "code_location" : "C:\\Users\\jiwoo\\Git\\graduateProject\\Deobfuscation_Code\\base64_deobfuscation.py"
+        "descriptions" : "상위 권한 탈취 가능성 URL - 자체 길이가 65이상이고 상위 권한으로 갈 수 있는 특수문자가 존재하는지 파악",
+        "code_location" : "C:\\Users\\jiwoo\\Git\\graduateProject\\URL_Deob\\upperauthority.py"
     },
     {
         "no" : 2,
         "title" : "smishingURL",
         "descriptions" : "상위 권한 탈취 가능성 URL",
-        "code_location" : "C:\\Users\\jiwoo\\Git\\graduateProject\\Deobfuscation_Code\\base64_deobfuscation.py"
+        "code_location" : "C:\\Users\\jiwoo\\Git\\graduateProject\\URL_Deob\\smishingurl.py"
     }
 ]
