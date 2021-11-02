@@ -165,6 +165,11 @@ def checkDecode(client_sock) :
     list_decode = mod.base64_decode(str)
     return list_decode
 
+# URL Check
+def checkURL(client_sock) :
+    url_str = client_sock.recv(4000).decode('utf-8')
+    print(url_str)
+
 
 
 def main():
@@ -212,6 +217,9 @@ def main():
             decode_result = checkDecode(client_sock)
             print(decode_result)
             client_sock.send(decode_result.encode())
+
+        elif filesize.decode('utf-8') == '2' :
+            url_result = checkURL(client_sock)
             
         else :
 
