@@ -82,5 +82,29 @@
         "title" : "WindowOpenMethod",
         "descriptions" : "URL의 html에서 window.open() 있는지 파악",
         "code_location" : "C:\\Users\\jiwoo\\Git\\graduateProject\\URL_Based_Code\\windowopenmethod.py"
+    },
+    {
+        "no" : 15,
+        "title" : "evalMethod",
+        "descriptions" : "URL의 html에서 eval() 있는지 파악 - 문자로 표현된 javascript 코드를 실행하는 함수",
+        "code_location" : "C:\\Users\\jiwoo\\Git\\graduateProject\\URL_Based_Code\\evalmethod.py"
+    },
+    {
+        "no" : 16,
+        "title" : "CharCodeAtMethod",
+        "descriptions" : "URL의 html에서 charCodeAt() 있는지 파악 - 문자열중 하나를 선택하여 아스키코드 번호로 변환해주는 함수",
+        "code_location" : "C:\\Users\\jiwoo\\Git\\graduateProject\\URL_Based_Code\\charcodeatmethod.py"
+    },
+    {
+        "no" : 17,
+        "title" : "FromCharCodeMethod",
+        "descriptions" : "URL의 html에서 fromCharCode() 있는지 파악 - 아스키코드번호를 받아 문자열을 구성해주는 함수",
+        "code_location" : "C:\\Users\\jiwoo\\Git\\graduateProject\\URL_Based_Code\\fromcharcodemethod.py"
+    },
+    {
+        "no" : 18,
+        "title" : "escapeMethod",
+        "descriptions" : "URL의 html에서 escape() 있는지 파악 - 특수문자를 제외한 나머지 문자를 16진수로 바꿔 우회할 수 있는 함수",
+        "code_location" : "C:\\Users\\jiwoo\\Git\\graduateProject\\URL_Based_Code\\escapemethod.py"
     }
 ]
