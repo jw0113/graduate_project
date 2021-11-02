@@ -9,8 +9,11 @@ def url_based_code(url_str) :
         html_str = str(url_html.read().decode("utf-8"))
     
         find_result = html_str.find('<input type = "hidden"')
+        find_result1 = html_str.find('<input type= "hidden"')
+        find_result2 = html_str.find('<input type ="hidden"')
+        find_result4 = html_str.find('<input type="hidden"')
     
-        if find_result == -1 :
+        if find_result or find_result1 or find_result2 or find_result4 == -1 :
             return False
         else :
             return True
