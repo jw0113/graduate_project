@@ -169,7 +169,21 @@ def checkDecode(client_sock) :
 def checkURL(client_sock) :
     url_str = client_sock.recv(4000).decode('utf-8')
     print(url_str)
+    result_num = 0
+    deob_rule = load_rules("./rules/url_rules.json")
+    for index in range(len(deob_rule)) :
+        deobrule_path = deob_rule[index]["code_location"]
+        deobrule_name = os.path.basename(deobrule_path)
 
+        spec = importlib.util.spec_from_file_location(deobrule_name, deobrule_path)
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        deobrule_result = mod.url_deob(url_str)
+        print(deob_rule[index]["no"], " : ", deobrule_result)
+        if deobrule_result == True :
+            result_num += 1
+        
+    return result_num
 
 
 def main():
@@ -220,6 +234,7 @@ def main():
 
         elif filesize.decode('utf-8') == '2' :
             url_result = checkURL(client_sock)
+            client_sock.send(url_result.to_bytes(10, byteorder='little'))
             
         else :
 
