@@ -13,11 +13,34 @@
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="./resources/css/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+        <style>
+        	.chart {float: left; width: 33.33%; height: 230px; text-align: center;}
+			.chart span.percent{position: relative; display: block; width: 100%; text-align: center; top: 110px;}
+        </style>
 
         <script type = "text/javascript" src="./resources/js/jquery-3.6.0.min.js"></script>
+        <script src="./resources/js/jquery.easypiechart.min.js"></script>
+		<script>
+			$(function() {
+				$('.chart').easyPieChart({
+					barColor: '#f16529',
+					trackColor : '#ccc',
+					scaleColor : '#fff',
+					lineCap : 'butt',
+					lineWidth : 30,
+					size : 200,
+					animate : 1000,
+					easing: 'easeOutBounce',
+					onStep: function(from, to, percent) {
+						$(this.el).find('.percent').text(Math.round(percent));
+					}
+				});
+		
+			});
+		</script>
 
 
-    </head>
+	</head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
@@ -139,7 +162,9 @@
                                 <div class="card mb-4">
                                 	<div class="card-header">URL 분석 결과</div>
                             		<div class="card-body">
-                            			${percent}
+                            			<span class="chart" data-percent="${percent}">
+                            				<span class="percent"></span>
+                            			</span>
                             		</div>
                         		</div>
                             </div>

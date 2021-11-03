@@ -13,7 +13,7 @@ public class UrlService implements IUrlService {
 
 	// url check
 	@Override
-	public int urlCheck(String url) {
+	public double urlCheck(String url) {
 		Socket socket;
 		String ip = "127.0.0.1";
 		int port = 5000;
@@ -59,11 +59,11 @@ public class UrlService implements IUrlService {
 			bufferin.close();
 			socket.close();
 			
-			int percent = (url_result/11) * 100;
+			double percent = (url_result*100) / 11;
+			System.out.println("계산한 값 : " + percent);
 			return percent;
 				
 		} catch (Exception e) {
-			//System.out.println("Connect Fail");
 			e.printStackTrace();
 			return 0;
 		}

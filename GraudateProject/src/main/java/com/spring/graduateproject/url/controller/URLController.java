@@ -29,8 +29,9 @@ public class URLController {
 		System.out.println("url : " + inputurl);
 		
 		// url check
-		int percent = iurlservice.urlCheck(inputurl);
-		re.addFlashAttribute("urlname", inputurl);
+		double percent = iurlservice.urlCheck(inputurl);
+		System.out.println("percent : " + percent);
+
 		re.addFlashAttribute("percent", percent);
 		
 		return "redirect:/url";
