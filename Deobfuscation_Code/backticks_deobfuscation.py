@@ -1,6 +1,6 @@
 # powershell - back ticks 해제 코드
 
-def backticks_deob(deobfuscation) :
+def b_deobfuscation(deobfuscation) :
 
     deob_str = "d`gkjkgijk`gjkl`gjklgk`k"
     for index in range(len(deob_str)) : 
