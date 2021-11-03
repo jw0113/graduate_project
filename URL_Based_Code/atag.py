@@ -15,7 +15,7 @@ def url_based_code(url_str) :
         else :
             return True
 
-    except :
-        print("fail")
+    except Exception as e :
+        print(e)
         return "fail"
 

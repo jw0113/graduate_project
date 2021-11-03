@@ -172,6 +172,7 @@ def checkURL(client_sock) :
     result_num = 0
     deob_rule = load_rules("./rules/url_rules.json")
     for index in range(len(deob_rule)) :
+        print(index, " : ", deob_rule[index]["title"])
         deobrule_path = deob_rule[index]["code_location"]
         deobrule_name = os.path.basename(deobrule_path)
 
@@ -233,6 +234,7 @@ def main():
             client_sock.send(decode_result.encode())
 
         elif filesize.decode('utf-8') == '2' :
+            print("url check start")
             url_result = checkURL(client_sock)
             client_sock.send(url_result.to_bytes(10, byteorder='little'))
             

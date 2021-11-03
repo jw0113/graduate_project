@@ -11,8 +11,6 @@ def url_based_code(url_str) :
             num += 1
     
     if num == 0 :
-        print("No matching")
         return False
     else :
-        print("matching")
         return True

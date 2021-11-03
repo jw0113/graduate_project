@@ -16,7 +16,7 @@ def load_rules(path) :
 def url_deob(url_str):
 
     based_rule = load_rules("./rules/based_rules.json")
-    print(based_rule[0]['title'])
+
     for index in range(len(based_rule)) :
         if based_rule[index]['title'] == "CharCodeAtMethod":
             rule_path = based_rule[index]["code_location"]

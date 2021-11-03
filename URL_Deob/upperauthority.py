@@ -16,7 +16,6 @@ def load_rules(path) :
 def url_deob(url_str):
 
     based_rule = load_rules("./rules/based_rules.json")
-    print(based_rule[0]['title'])
     for index in range(len(based_rule)) :
         if based_rule[index]['title'] == "BackSlash":
             rule_path = based_rule[index]["code_location"]
@@ -47,6 +46,7 @@ def url_deob(url_str):
         
 
     if rule1 and rule2 and rule3 :
+        print(rule1, " , ", rule2, " , ", rule3)
         return True
     else :
         return False
