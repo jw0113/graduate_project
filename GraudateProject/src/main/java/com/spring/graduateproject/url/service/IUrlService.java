@@ -4,5 +4,5 @@ public interface IUrlService {
 
 	
 	// url check
-	void urlCheck(String url);
+	int urlCheck(String url);
 }

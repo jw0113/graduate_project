@@ -139,7 +139,7 @@
                                 <div class="card mb-4">
                                 	<div class="card-header">URL 분석 결과</div>
                             		<div class="card-body">
-
+                            			${percent}
                             		</div>
                         		</div>
                             </div>

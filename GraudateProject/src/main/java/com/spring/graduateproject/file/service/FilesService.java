@@ -121,6 +121,7 @@ public class FilesService implements IFilesService {
 			int a;
 			while(true) {
 				a = bufferin.read(in);
+
 				if (a == 4) {
 					bufferout.write(inputstr.getBytes());
 					bufferout.flush();

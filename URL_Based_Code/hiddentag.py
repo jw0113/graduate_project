@@ -13,7 +13,7 @@ def url_based_code(url_str) :
         find_result2 = html_str.find('<input type ="hidden"')
         find_result4 = html_str.find('<input type="hidden"')
     
-        if find_result or find_result1 or find_result2 or find_result4 == -1 :
+        if find_result == -1 or find_result1 == -1 or find_result2 == -1 or find_result4 == -1 :
             return False
         else :
             return True

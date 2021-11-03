@@ -13,7 +13,7 @@ public class UrlService implements IUrlService {
 
 	// url check
 	@Override
-	public void urlCheck(String url) {
+	public int urlCheck(String url) {
 		Socket socket;
 		String ip = "127.0.0.1";
 		int port = 5000;
@@ -35,37 +35,37 @@ public class UrlService implements IUrlService {
 			bufferout.write(Integer.toString(2).getBytes());
 			bufferout.flush();
 			
-			String encode_result = "";
-			byte[] in = new byte[9999];
 			int a;
+			int url_result = 0;
 			while(true) {
-				a = bufferin.read(in);
-				if (a == 4) {
+				a = bufferin.read();
+				if (a == 1) {
 					bufferout.write(url.getBytes());
 					bufferout.flush();
 					
 				}
 				
 				else if (a > 0) {
-					//byte[] in = new byte[9999];
-					encode_result += new String(in,0,a);
+					url_result = a;
 				}
 				
 				else if (a < 0) {
 					break;
 				}
 			}
-			System.out.println("encode_result : " + encode_result);
+			System.out.println("url_result : " + url_result);
 			
 			bufferout.close();
 			bufferin.close();
 			socket.close();
 			
-			
-			
+			int percent = (url_result/11) * 100;
+			return percent;
+				
 		} catch (Exception e) {
-			System.out.println("Connect Fail");
+			//System.out.println("Connect Fail");
 			e.printStackTrace();
+			return 0;
 		}
 	}
 	
