@@ -4,53 +4,41 @@
         "title" : "Powershell - BASE64",
         "descriptions" : "Decoding Base64 String. If the released code is incomplete, please try again this Executable",
         "regexp" : "([A-Za-z0-9=]{20,})",
-        "deobfuscation" : "C:\\Users\\jiwoo\\Git\\graduateProject\\Deobfuscation_Code\\base64_deobfuscation.py",
-        "code_convert" : "none",
-        "tips" : ""
+        "deobfuscation" : "C:\\Users\\jiwoo\\Git\\graduateProject\\Deobfuscation_Code\\base64_deobfuscation.py"
     },
     {
         "no" : 2,
         "title" : "Powershell - Split",
         "descriptions" : "The deobfuscated code is Powershellscript-split obfuscation",
         "regexp" : "(\"[a-zA-z0-9\\.:/]{1,}\"[+]\"[a-zA-z0-9\\.:/]{1,}\"[+]*)",
-        "deobfuscation" : "C:\\Users\\jiwoo\\Git\\graduateProject\\Deobfuscation_Code\\split_deobfuscation.py",
-        "code_convert" : "none",
-        "tips" : ""
+        "deobfuscation" : "C:\\Users\\jiwoo\\Git\\graduateProject\\Deobfuscation_Code\\split_deobfuscation.py"
     },
     {
         "no" : 3,
         "title" : "Powershell - Replace()",
         "descriptions" : "The deobfuscated code is Powershellscript-replace() obfuscation",
         "regexp" : "([\"\\']+.{1,}[\"\\']+\\.replace\\([a-z\\'\",]{1,}\\))",
-        "deobfuscation" : "C:\\Users\\jiwoo\\Git\\graduateProject\\Deobfuscation_Code\\replace_deobfuscation.py",
-        "code_convert" : "none",
-        "tips" : ""
+        "deobfuscation" : "C:\\Users\\jiwoo\\Git\\graduateProject\\Deobfuscation_Code\\replace_deobfuscation.py"
     },
     {
         "no" : 4,
         "title" : "Powershell - Reorder",
         "descriptions" : "The deobfuscated code is Powershellscript-reorder obfuscation",
-        "regexp" : "\"(\\{[0-9]+\\})+\"\\s{0,}\\-f\\s{0,}(([\\'](.*?)[\\'])\\,{0,})+",
-        "deobfuscation" : "python 경로",
-        "code_convert" : "none",
-        "tips" : ""
+        "regexp" : "([\"\\'][\\{0-9+\\}]+[\"\\']\\s{0,}\\-f\\s{0,}[\"\\']+[^\\)\\(]+[\"\\'])",
+        "deobfuscation" : "C:\\Users\\jiwoo\\Git\\graduateProject\\Deobfuscation_Code\\reorder_deobfuscation.py"
     },
     {
         "no" : 5,
         "title" : "Powershell - Back Ticks",
         "descriptions" : "The deobfuscated code is Powershellscript-Back Ticks obfuscation",
         "regexp" : "([a-zA-z0-9]{1,}[`].{1})",
-        "deobfuscation" : "C:\\Users\\jiwoo\\Git\\graduateProject\\Deobfuscation_Code\\backticks_deobfuscation.py",
-        "code_convert" : "none",
-        "tips" : ""
+        "deobfuscation" : "C:\\Users\\jiwoo\\Git\\graduateProject\\Deobfuscation_Code\\backticks_deobfuscation.py"
     },
     {
         "no" : 6,
         "title" : "Powershell - Invoke",
         "descriptions" : "The deobfuscated code is Powershellscript-invoke obfuscation",
         "regexp" : "([I|i][N|n][V|v][O|o][K|k][a-zA-Z][\\S][a-zA-Z]*)",
-        "deobfuscation" : "C:\\Users\\jiwoo\\Git\\graduateProject\\Deobfuscation_Code\\invoke_deobfuscation.py",
-        "code_convert" : "none",
-        "tips" : ""
+        "deobfuscation" : "C:\\Users\\jiwoo\\Git\\graduateProject\\Deobfuscation_Code\\invoke_deobfuscation.py"
     }
 ]
