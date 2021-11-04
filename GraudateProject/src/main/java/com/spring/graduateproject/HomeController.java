@@ -39,7 +39,7 @@ public class HomeController {
 		// fileupload db 삭제 후 시작
 		//ifileservice.deleteUploadfile();
 		
-		return "home";
+		return "mainhome";
 	}
 	
 	// fileupload 화면
