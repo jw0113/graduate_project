@@ -31,6 +31,7 @@ def load_rules(rule_path) -> dict:
 def match_rule(inputfile, rulefile) -> dict:
 
     result = {}
+    match_value = []
 
     # 파일 내용 중 \n이 있을 경우 한줄씩 검사
     # print('inputfile 크기 : ',len(inputfile))
@@ -53,9 +54,11 @@ def match_rule(inputfile, rulefile) -> dict:
             #print("크기 확인 : ", len(match_re))
 
             number = 0
+            n = 0
             
             # 정규표현식에 해당되는 내용 추출하기(여러개 탐지될 경우를 대비)
             for match in match_re:
+                
                 while True:
 
                     # 매칭된 값을 파일 내용에서 찾음
@@ -75,9 +78,11 @@ def match_rule(inputfile, rulefile) -> dict:
                     number += matching+len(match)
                     
                 if len(match_result) > 0:
-                    result["result"] = match_result
-
-        #print("result값 확인하자 : ",result)
+                    match_value.append(match_result)
+                    #print("match_result : ", match_result)
+                    #result["result"] = match_result 
+    result["result"] = match_value
+    print("result : ",result)
     return result
 
 # client가 보낸 파일 받기
@@ -93,8 +98,8 @@ def deobfuscation(result,rules):
     
 
     for index in range(len(result['result'])) :
-        #print("result[index] : ",result['result'][index])
-        # print(len(result[index]))
+        #print("result['result'][index][0] : ", result['result'][index][0]['title'])
+        #print(len(result['result']))
         
         if len(result['result'][index]) != 0:
 
@@ -103,7 +108,7 @@ def deobfuscation(result,rules):
                 #print(rules[rule_index]['no'])
                 
             
-                if result['result'][index]['rule_no'] == rules[rule_index]['no'] :
+                if result['result'][index][0]['rule_no'] == rules[rule_index]['no'] :
 
                     # 탐지 rule에서 해제 코드가 담겨있는 모듈 실행하기
                     deob_path = rules[rule_index]['deobfuscation']
@@ -112,11 +117,11 @@ def deobfuscation(result,rules):
                     spec = importlib.util.spec_from_file_location(deob_name, deob_path)
                     mod = importlib.util.module_from_spec(spec)
                     spec.loader.exec_module(mod)
-                    list_deob = mod.b_deobfuscation((result['result'][index]['match']))
+                    list_deob = mod.b_deobfuscation((result['result'][index][0]['match']))
             
             # 탐지 부분 해제 코드 넣기
             #result_deobfuscation.append(list_deob)
-            result['result'][index]['deobfuscation'] = list_deob
+            result['result'][index][0]['deobfuscation'] = list_deob
     print('최종 result : ', result)
 
 # Encode check
@@ -227,7 +232,7 @@ def main():
         print("Connected by", addr)
 
         filesize = client_sock.recv(1024)
-        print("받아온 파일 : ", type(filesize))
+        #print("받아온 파일 : ", type(filesize))
         num = 1
         client_sock.send(num.to_bytes(4,byteorder='little'))
 
@@ -265,7 +270,7 @@ def main():
 
             # 읽어온 파일과 rule파일을 이용해 탐지하기
             result = match_rule(input_list, rule)
-            print("result : ", result)
+            #print("result : ", result)
 
             # 탐지부분 난독화 해제 진행
             deobfuscation(result, rule)
@@ -274,9 +279,9 @@ def main():
             data = []
             final_data = inputfile_list
             for result_index in range(len(result['result'])):
-                #print(result_index)
-                match = result['result'][result_index]['match']
-                #print(match)
+                print("result_index", result_index)
+                match = result['result'][result_index][0]['match']
+                print("match : ",match)
                 change_str = "<span class=\"highlight\" onclick=\"display("+str(result_index)+");\">"+str(match)+"</span>"
                 
                 if final_data.find(match) != -1:
@@ -287,7 +292,7 @@ def main():
             print("final_data : ",final_data)
 
             for result_in in range(len(result['result'])) :
-                result['result'][result_in]['data'] = str(final_data)
+                result['result'][result_in][0]['data'] = str(final_data)
             print("final : ", result)
 
             # 최종 result 값 spring에 넘기기
@@ -296,8 +301,6 @@ def main():
                 
 
         client_sock.close()
-    
-    
 
     #print("json 내용 불러오기 : ",rule)
     #print("파일 내용 불러오기 : ",inputfile_list)

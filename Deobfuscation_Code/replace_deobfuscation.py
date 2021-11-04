@@ -10,4 +10,5 @@ def b_deobfuscation(deobfuscation) :
     re_str = deobfuscation
     re_deob = eval(re_str)
     
-    print("replace deobfuscation : " + re_deob)
+    #print("replace deobfuscation : " + re_deob)
+    return re_deob

@@ -2,9 +2,10 @@
 
 def b_deobfuscation(deobfuscation) :
 
-    deob_str = "d`gkjkgijk`gjkl`gjklgk`k"
-    for index in range(len(deob_str)) : 
-        deob_str = deob_str.replace("`","")
 
-    print("backtics_deobfuscation reuslt =", deob_str)
+    for index in range(len(deobfuscation)) : 
+        deobfuscation = deobfuscation.replace("`","")
+
+    #print("backtics_deobfuscation reuslt =", deob_str)
+    return deobfuscation
 
