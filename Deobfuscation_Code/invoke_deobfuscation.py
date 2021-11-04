@@ -5,5 +5,5 @@ import os
 def b_deobfuscation(deobfuscation) :
     
     # site 추천 문자열 전송
-    result = "about InvokeExpression, we suggest already using code.\n"
+    result = "about InvokeExpression, we suggest already using code."
     return result
