@@ -133,9 +133,10 @@ public class FileService implements IFileService {
 	// 탐지&해제 result db 저장
 	@Override
 	public void uploadResultfile(FileUploadVO vo, String result) {
-		System.out.println("result값 : "+result);
+		//System.out.println("result값 : "+result);
 
 		result = "{"+result;
+		System.out.println("result값 : "+result);
 		
 		// db 내용 총 갯수 확인
 		//int index = mapper.total();
@@ -144,14 +145,13 @@ public class FileService implements IFileService {
 			// 탐지&해제 코드 json 파싱 작업
 			JSONParser jsonParse = new JSONParser();
 			JSONObject jsonObj = (JSONObject) jsonParse.parse(result);
-			JSONArray resultArray = (JSONArray) jsonObj.get("result");
-			//System.out.println("size : " + resultArray.size());
-			JSONArray resultArray1 = (JSONArray) resultArray.get(0);
-			System.out.println(resultArray1);
-			System.out.println("size : " + resultArray1.size());
+			JSONArray resultArray1 = (JSONArray) jsonObj.get("result");
 			
-			for(int i =0; i<resultArray.size();i++) {
-				JSONObject resultObject = (JSONObject)resultArray1.get(i);
+			for(int i =0; i<resultArray1.size();i++) {
+				JSONArray resultArray = (JSONArray) resultArray1.get(i);
+				System.out.println("result :" + resultArray);
+				JSONObject resultObject = (JSONObject)resultArray.get(0);
+				System.out.println("object : " + resultObject);
 				vo.setTitle(String.valueOf(resultObject.get("title")));
 				vo.setDescription(String.valueOf(resultObject.get("descriptions")));
 				vo.setMatch(String.valueOf(resultObject.get("match")));
