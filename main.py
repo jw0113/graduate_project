@@ -90,11 +90,10 @@ def inputfiles(client_sock, size):
 
 # 난독화 해제 코드
 def deobfuscation(result,rules):
-    result_deobfuscation = []
     
 
     for index in range(len(result['result'])) :
-        # print(result[index])
+        #print("result[index] : ",result['result'][index])
         # print(len(result[index]))
         
         if len(result['result'][index]) != 0:
@@ -273,23 +272,22 @@ def main():
 
             # 원본데이터 수정
             data = []
+            final_data = inputfile_list
             for result_index in range(len(result['result'])):
                 #print(result_index)
                 match = result['result'][result_index]['match']
                 #print(match)
                 change_str = "<span class=\"highlight\" onclick=\"display("+str(result_index)+");\">"+str(match)+"</span>"
-                for source in input_list:
-                    if match in source :
-                        source = source.replace(match,change_str)
-                        data.append(source)
-                    else :
-                        data.append(source)
-            print(data)
-            data1 = '\n'.join(data)
-            print(data1)
+                
+                if final_data.find(match) != -1:
+                    final_data = final_data.replace(match, change_str)
+            #print("data : ",data)
+            #data1 = '\n'.join(data)
+            #print("data1 : ",data1)
+            print("final_data : ",final_data)
 
             for result_in in range(len(result['result'])) :
-                result['result'][result_in]['data'] = str(data1)
+                result['result'][result_in]['data'] = str(final_data)
             print("final : ", result)
 
             # 최종 result 값 spring에 넘기기
