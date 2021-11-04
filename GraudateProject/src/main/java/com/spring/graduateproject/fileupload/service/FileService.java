@@ -145,10 +145,13 @@ public class FileService implements IFileService {
 			JSONParser jsonParse = new JSONParser();
 			JSONObject jsonObj = (JSONObject) jsonParse.parse(result);
 			JSONArray resultArray = (JSONArray) jsonObj.get("result");
-			
+			//System.out.println("size : " + resultArray.size());
+			JSONArray resultArray1 = (JSONArray) resultArray.get(0);
+			System.out.println(resultArray1);
+			System.out.println("size : " + resultArray1.size());
 			
 			for(int i =0; i<resultArray.size();i++) {
-				JSONObject resultObject = (JSONObject)resultArray.get(i);
+				JSONObject resultObject = (JSONObject)resultArray1.get(i);
 				vo.setTitle(String.valueOf(resultObject.get("title")));
 				vo.setDescription(String.valueOf(resultObject.get("descriptions")));
 				vo.setMatch(String.valueOf(resultObject.get("match")));
