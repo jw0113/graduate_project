@@ -19,7 +19,7 @@
         <style>
         	.dragAndDropDiv {
                 border: 2px dashed #92AAB0;
-                width: 650px;
+                width: 680px;
                 height: 200px;
                 color: #92AAB0;
                 text-align: center;
@@ -50,7 +50,7 @@
             .statusbar{
                 border-top:1px solid #A9CCD1;
                 min-height:25px;
-                width:650px;
+                width:680px;
                 padding:10px 10px 0px 10px;
                 vertical-align:top;
             }
@@ -260,7 +260,7 @@
             <div class="container px-4 px-lg-5">
                 <div class="row gx-10 gx-lg-10 d-flex h-100 mx-auto align-items-center justify-content-center" style="padding-top : 50px;">
            
-                    <div class="col-xl-9 col-lg-9">
+                    <div class="col-xl-8 col-lg-8">
                         <h2 class="text-white mb-5">Code Obfuscation</h2>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">악성 코드 파일을 업로드 하세요!</li>

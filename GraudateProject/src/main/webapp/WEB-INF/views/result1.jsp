@@ -39,26 +39,28 @@
             </div>
         </nav>
         <section class="contact-section bg-black">
-            <div class="container px-4 px-lg-5 ">
-           		<div class="col-xl-4 col-lg-5 d-flex h-100 mx-auto align-items-center justify-content-center">
-                	<h2 class="text-white mb-5">Code Obfuscation</h2>
-                	<ol class="breadcrumb mb-4">
-                    	<li class="breadcrumb-item active">결과 확인</li>
-                  	</ol>
-                
-                <c:forEach var="r" items="${result}">
-                	<div class="col-md-4 mb-3 mb-md-0">
-                        <div class="card py-4 h-100">
-                            <div class="card-body text-center">
-                                <i class="fas fa-envelope text-primary mb-2"></i>
-                                <h4 class="text-uppercase m-0">${r.filename}</h4>
-                                <hr class="my-4 mx-auto" />
-                                <a class="btn btn-primary" href="/graduateproject/result2?filename='${r.filename}'" style="padding : 10px, 10px;">Result</a>
-                            </div>
-                        </div>
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5">
+           
+                    <div class="col-md-10 col-lg-8 mx-auto text-center">
+                        <h2 class="text-white mb-5">Code Obfuscation</h2>
+                        <ol class="breadcrumb mb-4">
+                            <li class="text-black-50 mb-0">결과 확인</li>
+                        </ol>
+                        <c:forEach var="r" items="${result}">
+                			<div class="col-md-4 mb-3 mb-md-0 align-items-center justify-content-center">
+                        		<div class="card py-4 h-100">
+                            		<div class="card-body text-center">
+                                		<i class="fas fa-envelope text-primary mb-2"></i>
+                                		<h4 class="text-uppercase m-0">${r.filename}</h4>
+                                		<hr class="my-4 mx-auto" />
+                                		<a class="btn btn-primary" href="/graduateproject/result2?filename=${r.filename}" style="padding : 10px, 10px;">Result</a>
+                            		</div>
+                        		</div>
+                    		</div>
+                		</c:forEach>
                     </div>
-                </c:forEach>
-               </div>
+                </div>
             </div>
         </section>
         
