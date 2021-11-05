@@ -42,6 +42,16 @@ public class HomeController {
 		return "mainhome";
 	}
 	
+	//기본 메인 화면2
+	@RequestMapping(value = "/main", method = RequestMethod.GET)
+	public String main() {
+
+		// fileupload db 삭제 후 시작
+		//ifileservice.deleteUploadfile();
+
+		return "main";
+	}
+	
 	// fileupload 화면
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String index() {
