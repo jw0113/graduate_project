@@ -31,38 +31,20 @@
     },
     {
         "no" : 6,
-        "title" : "javaExe - evalMethod",
-        "descriptions" : "취약한 java함수 탐지1 - eval()",
-        "code_location" : "C:\\Users\\jiwoo\\Git\\graduateProject\\URL_Deob\\javaevalexe.py"
-    },
-    {
-        "no" : 7,
-        "title" : "javaExe - windowOpenMethod",
-        "descriptions" : "취약한 java함수 탐지2 - window.open()",
-        "code_location" : "C:\\Users\\jiwoo\\Git\\graduateProject\\URL_Deob\\javawindowopenexe.py"
-    },
-    {
-        "no" : 8,
-        "title" : "javaExe - charCodeAtMethod",
-        "descriptions" : "취약한 java함수 탐지3 - charCodeAt()",
-        "code_location" : "C:\\Users\\jiwoo\\Git\\graduateProject\\URL_Deob\\javacharcodeatexe.py"
-    },
-    {
-        "no" : 9,
-        "title" : "javaExe - FromCharCodeMethod",
-        "descriptions" : "취약한 java함수 탐지4 - fromCharCode()",
-        "code_location" : "C:\\Users\\jiwoo\\Git\\graduateProject\\URL_Deob\\javafromcharcodeexe.py"
-    },
-    {
-        "no" : 10,
         "title" : "javaExe - escapeMethod",
-        "descriptions" : "취약한 java함수 탐지5 - escape()",
+        "descriptions" : "취약한 java함수 탐지 - escape()",
         "code_location" : "C:\\Users\\jiwoo\\Git\\graduateProject\\URL_Deob\\javaescapeexe.py"
     },
     {
-        "no" : 11,
+        "no" : 7,
         "title" : "SpecialCharacter",
         "descriptions" : "URL에 특수문자가 존재하는지 파악",
         "code_location" : "C:\\Users\\jiwoo\\Git\\graduateProject\\URL_Deob\\specialcharacter.py"
+    },
+    {
+        "no" : 8,
+        "title" : "JavaExe",
+        "descriptions" : "URL의 html에서 악의적으로 사용할 가능성이 큰 자바 실행 함수가 있는지 파악",
+        "code_location" : "C:\\Users\\jiwoo\\Git\\graduateProject\\URL_Deob\\javaexe.py"
     }
 ]

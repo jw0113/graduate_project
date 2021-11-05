@@ -172,12 +172,13 @@ def checkDecode(client_sock) :
 # URL Check
 def checkURL(client_sock) :
     url_str = client_sock.recv(4000).decode('utf-8')
-    print(url_str)
+    
     if url_str.find("http") == -1 :
         url_str1 = "http://" + url_str
     else :
         url_str1 = url_str
     result_num = 0
+    print(url_str)
     deob_rule = load_rules("./rules/url_rules.json")
     for index in range(len(deob_rule)) :
         print(index+1, " : ", deob_rule[index]["title"])
@@ -189,14 +190,9 @@ def checkURL(client_sock) :
         spec.loader.exec_module(mod)
         deobrule_result = mod.url_deob(url_str1)
         print(deob_rule[index]["no"], " : ", deobrule_result)
-
-        if deobrule_result == "fail":
-            print("fail")
-            result_num = 0
-            break
-        else :     
-            if deobrule_result == True :
-                result_num += 1
+     
+        if deobrule_result == True :
+            result_num += 1
         
     return result_num
 
@@ -234,10 +230,11 @@ def main():
         filesize = client_sock.recv(1024)
         #print("받아온 파일 : ", type(filesize))
         num = 1
-        client_sock.send(num.to_bytes(4,byteorder='little'))
+        #client_sock.send(num.to_bytes(4,byteorder='little'))
 
         # base64 인코딩 작업
         if filesize.decode('utf-8') == '0' :
+            client_sock.send(num.to_bytes(4,byteorder='little'))
             #r = load_rules("./rules/rules.json")
             encode_result = checkEncode(client_sock)
             #print("encode_result : ", encode_result)
@@ -245,12 +242,15 @@ def main():
 
         # base64 디코딩 작업
         elif filesize.decode('utf-8') == '1':
+            client_sock.send(num.to_bytes(4,byteorder='little'))
             decode_result = checkDecode(client_sock)
             print(decode_result)
             client_sock.send(decode_result.encode())
 
         # url 파악 작업
         elif filesize.decode('utf-8') == '2' :
+            url_num = 99
+            client_sock.send(url_num.to_bytes(4,byteorder='little'))
             print("url check start")
             url_result = checkURL(client_sock)
             print("url_result : ", url_result)
@@ -259,6 +259,7 @@ def main():
         # 악성코드 파일 작업
         else :
 
+            client_sock.send(num.to_bytes(4,byteorder='little'))
             # 데이터 크기만큼의 데이터 내용도 받아옴
             inputfile_list = inputfiles(client_sock, filesize)
             # print(type(inputfile_list))

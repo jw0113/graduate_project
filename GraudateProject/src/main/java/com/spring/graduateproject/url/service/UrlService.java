@@ -39,7 +39,7 @@ public class UrlService implements IUrlService {
 			int url_result = 0;
 			while(true) {
 				a = bufferin.read();
-				if (a == 1) {
+				if (a == 99) {
 					bufferout.write(url.getBytes());
 					bufferout.flush();
 					
@@ -59,7 +59,7 @@ public class UrlService implements IUrlService {
 			bufferin.close();
 			socket.close();
 			
-			double percent = (url_result*100) / 11;
+			double percent = (url_result*100) / 8;
 			System.out.println("계산한 값 : " + percent);
 			return percent;
 				

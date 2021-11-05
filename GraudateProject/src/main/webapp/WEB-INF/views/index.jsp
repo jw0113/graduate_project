@@ -105,7 +105,6 @@
 				$(document).on("drop",".dragAndDropDiv", function(e){
 					e.preventDefault();
 					$(this).css("border",'2px solid #0B85A1');
-
 					var files = e.originalEvent.dataTransfer.files;
 					fileUpload(files,$(".dragAndDropDiv"));
 				});
@@ -134,10 +133,8 @@
 					this.filesize = $("<div class='filesize'></div>").appendTo(this.statusbar);
 					this.progressBar = $("<div class='progressBar'><div></div></div>").appendTo(this.statusbar);
 					this.abort = $("<div class='abort'>중지</div>").appendTo(this.statusbar);
-
 					// 파일 업로드 창에 statusbar 부분를 추가한다.
 					obj.after(this.statusbar);
-
 					// 파일 이름과 크기 나타내기
 					this.setFile = function(name, size){
 						var f_size = "";
@@ -149,13 +146,10 @@
 						else{
 							f_size = f_sizekb.toFixed(2) + "KB";
 						}
-
 						this.filename.html(name);
 						this.filesize.html(f_size);
-
 					}
 					this.setProgress = function(progress){
-
 						var progressWidth = progress * this.progressBar.width() / 100;
 						this.progressBar.find("div").animate({width : progressWidth},1000).html(progress + "%");
 						if (parseInt(progress) >= 100){ 
@@ -168,7 +162,6 @@
 							f_ajax.abort();
 							this.statusbar.hide();
 						})
-
 					}
 				}
 				var rearray = new Array();
