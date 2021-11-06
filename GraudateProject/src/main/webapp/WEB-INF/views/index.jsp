@@ -160,7 +160,7 @@
 						if (progress != 100)
 							this.progressBar.find("div").animate({width : progressWidth},1000).html(progress + "%");
 						else {
-							this.progressBar.find("div").animate({width : progressWidth},100,function(){
+							this.progressBar.find("div").animate({width : progressWidth},1000,function(){
 								alert("¼º°ø");
 								location.href="/graduateproject/result1";
 							}).html(progress + "%");
@@ -250,8 +250,8 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="#page-top">home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#projects">login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/graduateproject/">home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/graduateproject/main/">login</a></li>
                     </ul>
                 </div>
             </div>
