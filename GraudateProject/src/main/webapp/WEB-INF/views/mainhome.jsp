@@ -29,7 +29,6 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a class="nav-link" href="#page-top">home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#projects">login</a></li>
                     </ul>
                 </div>
             </div>
@@ -39,9 +38,8 @@
             <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
                 <div class="d-flex justify-content-center">
                     <div class="text-center">
-                        <h1 class="mx-auto my-0 text-uppercase">Code Obfuscation</h1>
+                        <h1 class="mx-auto my-4 text-uppercase">Code Obfuscation</h1>
                         <!--<h2 class="text-white-50 mx-auto mt-2 mb-5">A free, responsive, one page Bootstrap theme created by Start Bootstrap.</h2>-->
-                        <h2></h2>
                         <a class="btn btn-primary" href="/graduateproject/main">Get Started</a>
                     </div>
                 </div>

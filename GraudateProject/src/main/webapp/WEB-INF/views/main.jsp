@@ -29,8 +29,8 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="#page-top">home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#projects">login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/graduateproject/">home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/graduateproject/">back</a></li>
                     </ul>
                 </div>
             </div>
@@ -41,10 +41,9 @@
                     <div class="col-xl-5 col-lg-5">
                         <div class="card py-4 h-100">
                             <div class="card-body text-center">
-                                <i class="fas fa-map-marked-alt text-primary mb-2"></i>
                                 <h4 class="text-uppercase m-0">File Upload</h4>
                                 <hr class="my-4 mx-auto" />
-                                <div class="small text-black-50">악성코드 파일 탐지 및 해제</div>
+                                <div class="small text-black-50 mb-3">악성코드 파일 탐지 및 해제</div>
                                 <a class="small text-black stretched-link" href="/graduateproject/index">View Details    <i class="fas fa-angle-right"></i></a>
                             </div>
      
@@ -53,11 +52,9 @@
                     <div class = "col-xl-5 col-lg-5">
                     	<div class="card py-4 h-100">
                             <div class="card-body text-center">
-                            	<a href="/graduateproject/index"></a>
-                                <i class="fas fa-map-marked-alt text-primary mb-2"></i>
                                 <h4 class="text-uppercase m-0">Malicious Files</h4>
                                 <hr class="my-4 mx-auto" />
-                                <div class="small text-black-50">악성 파일 리스트</div>
+                                <div class="small text-black-50 mb-3">악성 파일 리스트</div>
                                 <a class="small text-black stretched-link" href="/graduateproject/filelist">View Details    <i class="fas fa-angle-right"></i></a>
                             </div>
                         </div>
@@ -65,10 +62,9 @@
                     <div class = "col-xl-5 col-lg-5">
                     	<div class="card py-4 h-100">
                             <div class="card-body text-center">
-                                <i class="fas fa-map-marked-alt text-primary mb-2"></i>
                                 <h4 class="text-uppercase m-0">Base64 Encode & Decode</h4>
                                 <hr class="my-4 mx-auto" />
-                                <div class="small text-black-50">Base64 인코드 및 디코드 진행</div>
+                                <div class="small text-black-50 mb-3">Base64 인코드 및 디코드 진행</div>
                                 <a class="small text-black stretched-link" href="/graduateproject/base64">View Details    <i class="fas fa-angle-right"></i></a>
                             </div>
                         </div>
@@ -76,10 +72,9 @@
                     <div class="col-xl-5 col-lg-5">
                         <div class="card py-4 h-100">
                             <div class="card-body text-center">
-                                <i class="fas fa-envelope text-primary mb-2"></i>
                                 <h4 class="text-uppercase m-0">URL</h4>
                                 <hr class="my-4 mx-auto" />
-                                <div class="small text-black-50">URL을 검사 진행</div>
+                                <div class="small text-black-50 mb-3">URL을 검사 진행</div>
                                 <a class="small text-black stretched-link" href="/graduateproject/url">View Details    <i class="fas fa-angle-right"></i></a>
                             </div>
                         </div>
