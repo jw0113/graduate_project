@@ -76,7 +76,7 @@
         					Analysis :  ${filedetail.deob}</p>
         				</div>
         			</div>
-        			<div class="col-lg-6" style = "padding-left : 30px;">
+        			<div class="col-lg-6" style = "padding-left : 20px;">
         				<!-- <h4 class="text-white">Dangerous</h4>-->
         				<div class="d-flex h-100">
         					<canvas id="myPieChart" width="100%" height="50"></canvas>
