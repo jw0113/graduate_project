@@ -59,19 +59,21 @@
         	</c:forEach>
         	
         	function display(index){
-            	alert(index);
+            	//alert(index);
             	if(document.getElementById("deob")){
                 	var deob = document.getElementById("deob");
                 	var deobp = deob.parentElement;
                 	deobp.removeChild(deob);
                 }
-                var newDiv = document.createElement("div");
+                var newDiv = document.createElement("p");
                 var location = document.getElementById("right");
                 newDiv.innerHTML = arr[index].deob;
-                newDiv.setAttribute("class","box");
-                newDiv.setAttribute("id", "deob");
-                newDiv.setAttribute("style","overflow:scroll");
-                location.appendChild(newDiv); 
+                newDiv.setAttribute("class","mb-0 text-white-50");
+                
+                //newDiv.setAttribute("id", "deob");
+                //newDiv.setAttribute("style","overflow:scroll");
+                location.appendChild(newDiv);
+                //$("#deob").html(arr[index].deob);
         	}
 
         	// 뒤로가기 버튼을 눌렀을 경우
@@ -98,51 +100,37 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="#page-top">home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#projects">login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/graduateproject/">home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/graduateproject/result1/">뒤로가기</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
-        <div id="layoutSidenav">
-            <div id="layoutSidenav_content">
-                <main>
-                    <div class="container-fluid px-4">
-                        <h1 class="mt-4">Code Decryption</h1>
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">결과 확인</li>
-                        </ol>
-                       	<div class="card mb-4">
-                        	<div class="card-header">
-                        		<div class="left">
-                                	<i class="fas fa-table me-1"></i>
-                                	원본 파일             		
-                            	</div>
-                            	
-                            	<div class="right">
-                                	<i class="fas fa-table me-1"></i>
-                                	탐지 부분 해제
-                        		</div>
-                        	</div>
-                        	<div class="card-body">
-                        		<div class="left">
-                        			<div class="box" style="overflow:scroll">${data}</div>
-                        		</div>
-                        		<div class="right" id="right">
-                        		</div>
-                        	</div>
-                        	<div class="card-footer">
-                        		<button class="back">뒤로가기</button>
-                        		<button class="home">분석 종료</button>
-                        	</div>
-
-                        </div>
-                        
-                    </div>
-                </main>
-                
-            </div>
-        </div>
+        <section class="contact-section bg-black">
+        	<div class="container px-4 px-lg-5">
+        		<div class="row gx-4 gx-lg-5">
+        			<div class="col-md-5 col-lg-5 mx-auto text-center">
+                        <h2 class="text-white mb-5">Code Obfuscation</h2>
+                	</div>
+        		</div>
+        		<div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
+        			<div class="col-lg-6" style="height: 500px;">
+        				<h4 class="text-white">원본 파일</h4>
+        				<div class="d-flex h-100" style="overflow:scroll; flex-direction : column; flex-wrap : wrap; word-break : break-all; hight:100%;">
+        					<p class="mb-0 text-white-50">${data}</p>
+        				</div>
+        			</div>
+        			<div class="col-lg-6" style="height: 500px;">
+        				<h4 class="text-white">탐지 부분 해제</h4>
+        				<div class="d-flex h-100" style="overflow:scroll; flex-direction : column; flex-wrap : wrap; word-break : break-all; hight:100%;" id="right">
+        					
+        				</div>
+        			</div>
+        		</div>
+        	</div>
+        </section>
+        
+       
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->

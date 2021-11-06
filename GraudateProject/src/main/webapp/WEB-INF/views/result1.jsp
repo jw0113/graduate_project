@@ -32,8 +32,8 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="#page-top">home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#projects">login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/graduateproject/">home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/graduateproject/index/">뒤로가기</a></li>
                     </ul>
                 </div>
             </div>
@@ -45,7 +45,7 @@
                     <div class="col-md-10 col-lg-8 mx-auto text-center">
                         <h2 class="text-white mb-5">Code Obfuscation</h2>
                         <ol class="breadcrumb mb-4">
-                            <li class="text-black-50 mb-0">결과 확인</li>
+                            <li class="text-white-50 mb-0">결과 확인</li>
                         </ol>
                         <c:forEach var="r" items="${result}">
                 			<div class="col-md-4 mb-3 mb-md-0 align-items-center justify-content-center">
