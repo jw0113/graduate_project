@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Code Obfuscation</title>
+        <title>Code Decryption</title>
         <link rel="icon" type="image/x-icon" href="./resources/assets/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
@@ -55,7 +55,7 @@
                 vertical-align:top;
             }
             .statusbar:nth-child(odd){
-                background:#EBEFF0;
+                background:#000000;
             }
             .filename{
                 display:inline-block;
@@ -114,8 +114,7 @@
 					fileUpload(files,$(".dragAndDropDiv"));
 				});
 				function fileUpload(files,obj){
-					
-					for (var i=0; i<files.length; i++){
+					for (var i=0; i<files.length;i++){
 						var formData = new FormData();
 						formData.append("file", files[i])
 						console.log(files[i])
@@ -172,9 +171,11 @@
 					}
 					// 중지 버튼을 눌렀을 경우 이벤트 처리
 					this.setAbort = function(f_ajax){
+						var sb = this.statusbar;
 						this.abort.click(function(){
 							f_ajax.abort();
-							this.statusbar.hide();
+							sb.hide();
+							alert("중지되었습니다!");
 						})
 					}
 				}
@@ -211,7 +212,7 @@
 						dataType : "text",
 						processData : false,
 						contentType : false,
-						
+						async:false,
 						success : function(data){
 							if(data == "fail"){
 								console.log("fail : ", data);
@@ -221,7 +222,6 @@
 								console.log("success : ", data);
 								status.setProgress(100);
 								reindex++;
-								console.log("ssss : ",f_ajax)
 								//if(reindex == filesize) nextPage();
 								
 							}
@@ -243,15 +243,16 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="#page-top">Code Obfuscation</a>
+                <a class="navbar-brand" href="#page-top">Code Decryption</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="/graduateproject/">home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/graduateproject/main/">login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/graduateproject/">HOME</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/graduateproject/main">MAIN</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/graduateproject/main">BACK</a></li>
                     </ul>
                 </div>
             </div>

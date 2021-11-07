@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Code Obfuscation</title>
+        <title>Code Decryption</title>
         <link rel="icon" type="image/x-icon" href="./resources/assets/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
@@ -25,15 +25,16 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="#page-top">Code Obfuscation</a>
+                <a class="navbar-brand" href="#page-top">Code Decryption</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="/graduateproject/">home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/graduateproject/index/">뒤로가기</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/graduateproject/">HOME</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/graduateproject/main">MAIN</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/graduateproject/index">BACK</a></li>
                     </ul>
                 </div>
             </div>
@@ -42,25 +43,29 @@
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5">
            
-                    <div class="col-md-10 col-lg-8 mx-auto text-center">
-                        <h2 class="text-white mb-5">Code Obfuscation</h2>
-                        <ol class="breadcrumb mb-4">
-                            <li class="text-white-50 mb-0">결과 확인</li>
-                        </ol>
-                        <c:forEach var="r" items="${result}">
-                			<div class="col-md-4 mb-3 mb-md-0 align-items-center justify-content-center">
-                        		<div class="card py-4 h-100">
-                            		<div class="card-body text-center">
-                                		<i class="fas fa-envelope text-primary mb-2"></i>
-                                		<h4 class="text-uppercase m-0">${r.filename}</h4>
-                                		<hr class="my-4 mx-auto" />
-                                		<a class="btn btn-primary" href="/graduateproject/result2?filename=${r.filename}" style="padding : 10px, 10px;">Result</a>
-                            		</div>
-                        		</div>
-                    		</div>
-                		</c:forEach>
-                    </div>
+                   <div class="col-md-4 col-lg-3 mx-auto text-center">
+                        <h2 class="text-white">Code Decryption</h2>
+                        <h6 class="text-white mb-5 text-center">결과 확인</h6>
+                	</div>
                 </div>
+                <div class="row gx-4 gx-lg-5">
+					<c:forEach var="r" items="${result}">
+						<div class="col-md-4 mb-3 mb-md-0 align-items-center justify-content-center">
+
+							<div class="card py-4 h-100">
+								<div class="card-body text-center">
+									<i class="fas fa-envelope text-primary mb-2"></i>
+									<h4 class="text-uppercase m-0">${r.filename}</h4>
+									<hr class="my-4 mx-auto" />
+									<a class="btn btn-primary"
+										href="/graduateproject/result2?filename=${r.filename}"
+										style="padding: 10px, 10px;">Result</a>
+								</div>
+							</div>
+
+						</div>
+					</c:forEach>
+				</div>
             </div>
         </section>
         

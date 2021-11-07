@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Code Obfuscation</title>
+        <title>Code Decryption</title>
         <link rel="icon" type="image/x-icon" href="./resources/assets/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
@@ -93,15 +93,16 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="#page-top">Code Obfuscation</a>
+                <a class="navbar-brand" href="#page-top">Code Decryption</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="/graduateproject/">home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/graduateproject/result1/">뒤로가기</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/graduateproject/">HOME</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/graduateproject/main">MAIN</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/graduateproject/result1">BACK</a></li>
                     </ul>
                 </div>
             </div>
@@ -110,7 +111,7 @@
         	<div class="container px-4 px-lg-5">
         		<div class="row gx-4 gx-lg-5">
         			<div class="col-md-5 col-lg-5 mx-auto text-center">
-                        <h2 class="text-white mb-5">Code Obfuscation</h2>
+                        <h2 class="text-white mb-5">Code Decryption</h2>
                 	</div>
         		</div>
         		<div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
