@@ -54,12 +54,11 @@
         <script type = "text/javascript">
         	var arr = new Array();
         	<c:forEach var="r" items="${dbresult}">
-        		
         		arr.push({deob: "${fn:escapeXml(r.deob)}"});
         	</c:forEach>
         	
+        	
         	function display(index){
-            	//alert(index);
             	if(document.getElementById("deob")){
                 	var deob = document.getElementById("deob");
                 	var deobp = deob.parentElement;

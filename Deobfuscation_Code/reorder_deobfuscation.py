@@ -22,6 +22,7 @@ def b_deobfuscation(deobfuscation) :
         reg = re.compile(key_p)
         key = re.findall(reg,a)
 
+
     # key : 숫자, value : 데이터 형식으로 dict 생성
     for num in range(len(key)):
         result[str(key[num])] = str(value_list[num])

@@ -34,7 +34,7 @@ def match_rule(inputfile, rulefile) -> dict:
     match_value = []
 
     # 파일 내용 중 \n이 있을 경우 한줄씩 검사
-    # print('inputfile 크기 : ',len(inputfile))
+    #print('inputfile 크기 : ',len(inputfile))
     for index in range(len(inputfile)):
         temp = inputfile[index]
         match_result = []
@@ -42,14 +42,16 @@ def match_rule(inputfile, rulefile) -> dict:
         for size in range(len(rulefile)):
             # json형식 중 정규표현식 부분만 추출
             pattern = rulefile[size]["regexp"]
+            print(pattern)
 
             # 미리 컴파일해두고 저장하는 방법
             regexp = re.compile(pattern)
 
             # 파일의 내용과 정규표현식 매칭
             match_re = re.findall(regexp, inputfile[index])
+            print("inputfile : ",inputfile[index])
 
-            #print("이게뭔지 확인",match_re)
+            print("이게뭔지 확인",match_re)
             #print("size" , size)
             #print("크기 확인 : ", len(match_re))
 
@@ -63,6 +65,7 @@ def match_rule(inputfile, rulefile) -> dict:
 
                     # 매칭된 값을 파일 내용에서 찾음
                     matching = temp.find(match)
+                    print(matching)
 
                     # 만일 매칭되는 값이 없다면 break
                     if matching == -1:
@@ -264,7 +267,6 @@ def main():
             inputfile_list = inputfiles(client_sock, filesize)
             # print(type(inputfile_list))
             input_list = inputfile_list.split('\n')
-            # print(input_list,type(input_list))
 
             # json형식으로 저장한 Rules 가져오기
             rule = load_rules("./rules/rules.json")
