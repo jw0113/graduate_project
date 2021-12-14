@@ -60,7 +60,7 @@
                     </div>
                     <div class="col-md-10 col-lg-8 mx-auto text-center" style="padding-top : 40px;">
                     	<div class="featured-text text-center text-lg-left">
-                        	<p class="text-white-50 mb-2">
+                        	<p class="text-white-50 mb-2" style="word-wrap: break-word;">
                         		${encode_result}
                             	${decode_result}
                         	</p>

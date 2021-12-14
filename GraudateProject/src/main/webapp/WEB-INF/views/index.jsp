@@ -218,6 +218,10 @@
 								console.log("fail : ", data);
 								alert("서버를 다시 시도해주세요!");
 							}
+							else if(data == "no"){
+								alert("탐지된 결과값이 없습니다!");
+								location.href="/graduateproject/index";
+							}
 							else{
 								console.log("success : ", data);
 								status.setProgress(100);

@@ -79,6 +79,7 @@ public class HomeController {
 				// 파일의 크기 보냄
 				re = ifileservice.SizeCon(f,size);
 				if(re == "fail") break;
+				if(re.length() == 13) re = "no";
 				
 				try {
 					String data = new String(f.getBytes());
@@ -99,8 +100,12 @@ public class HomeController {
 			}
 
 		}
+		System.out.println("re의 크기 : " + re.length()); // 사이즈 확인 후 크기가 0일경우 결과값이 없는 것으로 판단 후 다시 redirect로 나오게 함
 		if(re == "fail") {
 			return "fail";
+		}
+		else if(re == "no") {
+			return "no";
 		}
 		else {
 			return re;
